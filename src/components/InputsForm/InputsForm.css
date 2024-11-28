@@ -1,0 +1,19 @@
+.inputs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  text-align: center;
+  border: 2px solid var(--border-color);
+}
+
+.credentials {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.targets {
+  display: flex;
+  flex-direction: column;
+}
