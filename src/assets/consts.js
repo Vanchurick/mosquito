@@ -40,6 +40,8 @@ export const STAFF_TARGET = "Особовий склад";
 export const LIGHT_VEHICLE_TARGET = "Легковий транспортний засіб";
 export const HEAVY_VEHICLE_TARGET = "Вантажний транспортний засіб";
 
+export const TARGETS_LABEL = "Цілі";
+
 export const TARGET_CITY_LABEL = "Населений пункт";
 
 export const TARGET_COORDINATES_LABEL = "Координати";
@@ -55,6 +57,10 @@ export const TARGET_ALTITUDE_LABEL = "Висота";
 export const ALTITUDE_100 = '100';
 export const ALTITUDE_500 = '500';
 export const ALTITUDE_1000 = '1000';
+
+export const JAMMING_LABEL = 'Дія РЕБ'
+
+export const DATA_LABEL = 'Дата'
 
 
 

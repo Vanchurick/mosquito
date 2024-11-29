@@ -1,42 +1,65 @@
 import DateSelector from "../Selects/DateSelector/Dateselector";
-import TargetsLabels from "../TargetsLabels/TargetsLabels";
-import SelectorNew from "../Selects/Selector/SelectorNew";
+import SelectorNew from "../Selects/Selector/Selector";
 
-import "./InputsForm.css";
-
-import { FORM_DATA } from "../../assets/formData";
+import { DATA_LABEL, TARGETS_LABEL, JAMMING_LABEL } from "../../assets/consts";
 import Targetselector from "../Selects/Targetselector/TargetSelector";
+import Checkbox from "../Selects/Checkbox/Checkbox";
+import { InputsContainer } from "./StyledComponents";
 
 function InputsForm({
-  setDate,
-  setTargets,
-  targets,
+  onSetJamming,
+  onSetNewTarget,
   onSetNewData,
   reportData,
 }) {
   const reportFieldsName = Object.keys(reportData);
 
+  const renderSelector = (formField) => {
+    let selector = (
+      <SelectorNew
+        key={formField}
+        optionsData={reportData[formField]}
+        handler={(selectedOption) => onSetNewData(formField, selectedOption)}
+      />
+    );
+
+    if (reportData[formField].label === DATA_LABEL) {
+      selector = (
+        <DateSelector
+          key={formField}
+          handler={(selectedOption) => onSetNewData(formField, selectedOption)}
+          dateFormData={reportData[formField]}
+        />
+      );
+    }
+
+    if (reportData[formField].label === TARGETS_LABEL) {
+      selector = (
+        <Targetselector
+          key={formField}
+          targetsFormData={reportData[formField]}
+          onAddNewTarget={(newTarget) => onSetNewTarget(formField, newTarget)}
+        />
+      );
+    }
+
+    if (reportData[formField].label === JAMMING_LABEL) {
+      selector = (
+        <Checkbox
+          key={formField}
+          data={reportData[formField]}
+          handler={(e) => onSetJamming(formField, e.target.checked)}
+        />
+      );
+    }
+
+    return selector;
+  };
+
   return (
-    <div className="inputs">
-      <div className="credentials">
-        <DateSelector handleDate={setDate} />
-        {reportFieldsName.map((fieldName) => (
-          <SelectorNew
-            key={fieldName}
-            optionsData={FORM_DATA[fieldName]}
-            handler={(selectedOption) =>
-              onSetNewData(fieldName, selectedOption)
-            }
-			value={reportData[fieldName]}
-          />
-        ))}
-      </div>
-      <div className="targets">
-        <h2>Цілі:</h2>
-        {/* <TargetsLabels targets={targets} removeTarget={setTargets} /> */}
-        <Targetselector handleTargets={setTargets} />
-      </div>
-    </div>
+    <InputsContainer>
+      {reportFieldsName.map((formField) => renderSelector(formField))}
+    </InputsContainer>
   );
 }
 
