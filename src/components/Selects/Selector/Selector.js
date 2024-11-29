@@ -1,32 +1,34 @@
-import React from "react";
-import SelectorContainer from "../SelectorContainer/SelectorContainer";
+import CreatableSelect from "react-select/creatable";
+import { SelectorContainer } from "./StyledComponents";
+import { PILOTS_LABEL } from "../../../assets/consts";
+import { useEffect } from "react";
 
-function Selector({ handler, data, value }) {
-  const { label, options } = data;
+const SelectorNew = ({ handler, optionsData }) => {
+  const { label, options, selected } = optionsData;
 
-  const handleSelect = (event) => {
-    handler(event.target.value);
+  const handleChange = (selectedOption) => {
+    handler(selectedOption);
   };
 
-  const isSelect = options ? (
-    <select id={label} value={value} onChange={handleSelect}>
-      <option value="">Виберіть...</option>
-      {options.map((option) => (
-        <option key={option.id} value={option.value}>
-          {option.text}
-        </option>
-      ))}
-    </select>
-  ) : (
-    <input id={label} type="text" onChange={handleSelect} value={value} />
-  );
+  useEffect(() => {
+    handler(options[0]);
+  }, []);
+
+  const isPilots = label === PILOTS_LABEL;
 
   return (
     <SelectorContainer>
-      <label htmlFor={label}>{label}</label>
-      {isSelect}
+      <label>{label}</label>
+      <CreatableSelect
+        options={options}
+        onChange={handleChange}
+        placeholder={`Виберіть значення`}
+        isMulti={isPilots}
+        value={selected}
+		isSearchable
+      />
     </SelectorContainer>
   );
-}
+};
 
-export default Selector;
+export default SelectorNew;
