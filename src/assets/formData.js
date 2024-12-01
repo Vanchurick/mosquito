@@ -233,10 +233,10 @@ export const FORM_DATA = {
       },
     ],
   },
-    jamming: {
-      label: JAMMING_LABEL,
-      selected: true,
-    },
+  jamming: {
+    label: JAMMING_LABEL,
+    selected: true,
+  },
   targets: {
     label: TARGETS_LABEL,
     selected: [],

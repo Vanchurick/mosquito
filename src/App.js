@@ -34,8 +34,6 @@ function App() {
   };
 
   const setIsJamming = (fieldName, value) => {
-    console.log(fieldName, value);
-
     setReportData((prevReportData) => {
       return {
         ...prevReportData,
@@ -55,7 +53,7 @@ function App() {
           onSetJamming={setIsJamming}
           reportData={reportData}
         />
-        {/* <Report reportData={reportData} /> */}
+        <Report reportData={reportData} />
       </section>
     </ThemeProvider>
   );
