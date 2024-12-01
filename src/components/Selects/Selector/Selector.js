@@ -9,12 +9,11 @@ const SelectorNew = ({ handler, optionsData }) => {
   const handleChange = (selectedOption) => {
     handler(selectedOption);
   };
+  const isPilots = label === PILOTS_LABEL;
 
   useEffect(() => {
-    handler(options[0]);
+    handler(isPilots ? [options[0]] : options[0]);
   }, []);
-
-  const isPilots = label === PILOTS_LABEL;
 
   return (
     <SelectorContainer>
@@ -25,7 +24,7 @@ const SelectorNew = ({ handler, optionsData }) => {
         placeholder={`Виберіть значення`}
         isMulti={isPilots}
         value={selected}
-		isSearchable
+        isSearchable
       />
     </SelectorContainer>
   );
