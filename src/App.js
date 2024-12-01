@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { mainTheme } from "./theme";
 import { GlobalStyle } from "./StyledComponents";
+import updateFormState from "./utils/updateFormState";
 
 import "./App.css";
 
@@ -9,50 +10,36 @@ import Header from "./components/Header/Header";
 import Report from "./components/Report/Report";
 import InputsForm from "./components/InputsForm/InputsForm";
 
-import getTodayDate from "./utils/getTodayDate";
-
-const initialState = {
-  timeStart: "",
-  timeFinish: "",
-  area: "1 ПРИКЗАС",
-  unit: "",
-  action: "",
-  aircraft: "",
-  directionUkr: "",
-  directionPidarasy: "",
-  altitude: "",
-  pilots: [],
-};
+import { FORM_DATA } from "./assets/formData";
 
 function App() {
-  const [reportData, setReportData] = useState(initialState);
-  const [date, setDate] = useState(getTodayDate());
-  const [targets, setTargets] = useState([]);
-  const [jamming, setJamming] = useState(false);
+  const [reportData, setReportData] = useState(FORM_DATA);
 
   const setValueToReportData = (fieldName, selectedOption) => {
-    console.log(fieldName, selectedOption);
-    if (!selectedOption) {
-      alert("Вибір null");
-      return;
-    }
+    updateFormState(fieldName, selectedOption, setReportData);
+  };
 
-    setReportData((prevReportData) => {
-      if (Array.isArray(selectedOption)) {
-        const selectedValues = selectedOption.map((option) => option.value);
-        return { ...prevReportData, [fieldName]: [...selectedValues] };
-      }
-      return { ...prevReportData, [fieldName]: selectedOption.value };
+  const addNewTarget = (fieldName, newTarget) => {
+    setReportData((prevDataForm) => {
+      const updatedDataForm = {
+        ...prevDataForm,
+        [fieldName]: {
+          ...prevDataForm[fieldName],
+          selected: [...prevDataForm[fieldName].selected, newTarget],
+        },
+      };
+
+      return updatedDataForm;
     });
   };
 
-  const inputsFormData = {
-    setDate,
-    date,
-    setTargets,
-    targets,
-    jamming,
-    setJamming,
+  const setIsJamming = (fieldName, value) => {
+    setReportData((prevReportData) => {
+      return {
+        ...prevReportData,
+        [fieldName]: { ...prevReportData[fieldName], selected: value },
+      };
+    });
   };
 
   return (
@@ -61,11 +48,12 @@ function App() {
       <Header />
       <section id="report">
         <InputsForm
-          {...inputsFormData}
           onSetNewData={setValueToReportData}
+          onSetNewTarget={addNewTarget}
+          onSetJamming={setIsJamming}
           reportData={reportData}
         />
-        {/* <Report date={date} targets={targets} reportData={reportData} /> */}
+        <Report reportData={reportData} />
       </section>
     </ThemeProvider>
   );

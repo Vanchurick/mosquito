@@ -43,6 +43,9 @@ import {
   ALTITUDE_100,
   ALTITUDE_500,
   ALTITUDE_1000,
+  TARGETS_LABEL,
+  JAMMING_LABEL,
+  DATA_LABEL,
 } from "./consts";
 
 import createTimeSelectorOptions from "../utils/createTimeSelectorOptions";
@@ -50,19 +53,23 @@ import createTimeSelectorOptions from "../utils/createTimeSelectorOptions";
 const timeOptions = createTimeSelectorOptions();
 
 export const FORM_DATA = {
+  data: {
+    label: DATA_LABEL,
+    selected: "",
+  },
   timeStart: {
     label: TIME_START_LABEL,
-	selected: {},
+    selected: null,
     options: timeOptions,
   },
   timeFinish: {
     label: TIME_FINISH_LABEL,
-	selected: {},
+    selected: null,
     options: timeOptions,
   },
   area: {
     label: AREA_LABEL,
-	selected: {},
+    selected: null,
     options: [
       { id: "A1B23", value: FIRST_OUT_POST, label: FIRST_OUT_POST },
       { id: "C4D56", value: SECOND_OUT_POST, label: SECOND_OUT_POST },
@@ -71,7 +78,7 @@ export const FORM_DATA = {
   },
   unit: {
     label: UNITS_LABEL,
-	selected: {},
+    selected: null,
     options: [
       {
         id: "G1H34",
@@ -87,7 +94,7 @@ export const FORM_DATA = {
   },
   action: {
     label: ACTION_LABEL,
-	selected: {},
+    selected: null,
     options: [
       {
         id: "L3M67",
@@ -108,7 +115,7 @@ export const FORM_DATA = {
   },
   aircraft: {
     label: AIRCRAFT_LABEL,
-	selected: {},
+    selected: null,
     options: [
       {
         id: "R6S90",
@@ -144,7 +151,7 @@ export const FORM_DATA = {
   },
   directionUkr: {
     label: DIRECTION_UKR_LABEL,
-	selected: {},
+    selected: null,
     options: [
       {
         id: "D2E56",
@@ -165,7 +172,7 @@ export const FORM_DATA = {
   },
   directionPidarasy: {
     label: DIRECTION_RU_LABEL,
-	selected: {},
+    selected: null,
     options: [
       {
         id: "J5K89",
@@ -184,60 +191,9 @@ export const FORM_DATA = {
       },
     ],
   },
-  targetName: {
-    label: TARGET_NAME_LABEL,
-	selected: {},
-    options: [
-      {
-        id: "J5K88",
-        value: POSITIONS_TARGET,
-        label: POSITIONS_TARGET,
-      },
-      {
-        id: "L6M97",
-        value: STAFF_TARGET,
-        label: STAFF_TARGET,
-      },
-      {
-        id: "N7O02",
-        value: LIGHT_VEHICLE_TARGET,
-        label: LIGHT_VEHICLE_TARGET,
-      },
-      { id: "K7O02", value: HEAVY_VEHICLE_TARGET, label: HEAVY_VEHICLE_TARGET },
-    ],
-  },
-  targetCity: {
-    label: TARGET_CITY_LABEL,
-	selected: {},
-    options: [
-      {
-        id: "J4K89",
-        value: SOPYCHI,
-        label: SOPYCHI,
-      },
-      {
-        id: "L8M90",
-        value: BILA_BEREZKA,
-        label: BILA_BEREZKA,
-      },
-      {
-        id: "N4O01",
-        value: AZAROVKA,
-        label: AZAROVKA,
-      },
-    ],
-  },
-  targetCoordinates: {
-    label: TARGET_COORDINATES_LABEL,
-	selected: {},
-  },
-  targetDistance: {
-    label: TARGET_DISTANCE_LABEL,
-	selected: {},
-  },
   pilots: {
     label: PILOTS_LABEL,
-	selected: [],
+    selected: [],
     options: [
       {
         id: "J4589",
@@ -258,7 +214,7 @@ export const FORM_DATA = {
   },
   altitude: {
     label: TARGET_ALTITUDE_LABEL,
-	selected: {},
+    selected: null,
     options: [
       {
         id: "J45f9",
@@ -276,5 +232,88 @@ export const FORM_DATA = {
         label: ALTITUDE_1000,
       },
     ],
+  },
+  jamming: {
+    label: JAMMING_LABEL,
+    selected: true,
+  },
+  targets: {
+    label: TARGETS_LABEL,
+    selected: [],
+    targetData: {
+      targetName: {
+        label: TARGET_NAME_LABEL,
+        selected: null,
+        options: [
+          {
+            id: "J5K88",
+            value: POSITIONS_TARGET,
+            label: POSITIONS_TARGET,
+          },
+          {
+            id: "L6M97",
+            value: STAFF_TARGET,
+            label: STAFF_TARGET,
+          },
+          {
+            id: "N7O02",
+            value: LIGHT_VEHICLE_TARGET,
+            label: LIGHT_VEHICLE_TARGET,
+          },
+          {
+            id: "K7O02",
+            value: HEAVY_VEHICLE_TARGET,
+            label: HEAVY_VEHICLE_TARGET,
+          },
+        ],
+      },
+      targetCity: {
+        label: TARGET_CITY_LABEL,
+        selected: null,
+        options: [
+          {
+            id: "J4K89",
+            value: SOPYCHI,
+            label: SOPYCHI,
+          },
+          {
+            id: "L8M90",
+            value: BILA_BEREZKA,
+            label: BILA_BEREZKA,
+          },
+          {
+            id: "N4O01",
+            value: AZAROVKA,
+            label: AZAROVKA,
+          },
+        ],
+      },
+      targetCoordinates: {
+        label: TARGET_COORDINATES_LABEL,
+        selected: null,
+        options: [],
+      },
+      targetDistance: {
+        label: TARGET_DISTANCE_LABEL,
+        selected: null,
+        options: [
+          {
+            id: "J45f9",
+            value: ALTITUDE_100,
+            label: ALTITUDE_100,
+          },
+          {
+            id: "L8a90",
+            value: ALTITUDE_500,
+            label: ALTITUDE_500,
+          },
+          {
+            id: "N4u01",
+            value: ALTITUDE_1000,
+            label: ALTITUDE_1000,
+          },
+        ],
+      },
+    },
   },
 };

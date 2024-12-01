@@ -1,59 +1,49 @@
 import "./TargetSelector.css";
 import Button from "../../Button/Button";
-import SelectorNew from "../Selector/SelectorNew";
+import SelectorNew from "../Selector/Selector";
 import { useState } from "react";
-
-import { FORM_DATA } from "../../../assets/formData";
-
+import updateFormState from "../../../utils/updateFormState";
 import generateUniqId from "../../../utils/generateUniqId";
 
-function Targetselector({ handleTargets }) {
-  const [name, setName] = useState("");
-  const [city, setCity] = useState("");
-  const [coordinates, setCoordinates] = useState("");
-  const [distance, setDistance] = useState("");
+function Targetselector({ onAddNewTarget, targetsFormData }) {
+  const [targetForm, setTargetForm] = useState(targetsFormData.targetData);
+
   const [isValidTarget, setIsValidTarget] = useState(true);
 
-  const addTarget = () => {
-    if (!name || !city || !coordinates || !distance) {
-      setIsValidTarget(false);
-      return;
-    }
-
-    const id = generateUniqId(5);
-
-    handleTargets((prevTargets) => {
-      const updatedTargets = [...prevTargets];
-      updatedTargets.push({ id, name, city, coordinates, distance });
-      return updatedTargets;
-    });
-
-    setName("");
-    setCity("");
-    setCoordinates("");
-    setDistance("");
-    setIsValidTarget(true);
+  const setTargetValue = (fieldName, selectedOption) => {
+    updateFormState(fieldName, selectedOption, setTargetForm);
   };
 
-  const { targetName, targetCity, targetCoordinates, targetDistance } =
-    FORM_DATA;
+  const onAddTarget = () => {
+    const newTarget = {};
+    for (const field in targetForm) {
+      if (!targetForm[field].selected) {
+        setIsValidTarget(false);
+        return;
+      }
+      newTarget[field] = targetForm[field].selected;
+    }
+    newTarget.id = generateUniqId(5);
 
-  const targetSelectorsData = [
-    { optionsData: targetName, handler: setName, value: name },
-    { optionsData: targetCity, handler: setCity, value: city },
-    { optionsData: targetCoordinates, handler: setCoordinates, value: coordinates },
-    { optionsData: targetDistance, handler: setDistance, value: distance },
-  ];
+    onAddNewTarget(newTarget);
+  };
+
+  const targetFormFields = Object.keys(targetForm);
 
   return (
     <>
       {!isValidTarget && <p className="warning">Заповніть усі поля</p>}
       <div className="target-selector">
-        {targetSelectorsData.map(({ ...props }, i) => (
-          <SelectorNew key={i} {...props} />
+        <h2>{targetsFormData.label}</h2>
+        {targetFormFields.map((fieldName) => (
+          <SelectorNew
+            key={fieldName}
+            handler={(newValue) => setTargetValue(fieldName, newValue)}
+            optionsData={targetForm[fieldName]}
+          />
         ))}
       </div>
-      <Button onClick={addTarget}>Додати</Button>
+      <Button onClick={onAddTarget}>Додати</Button>
     </>
   );
 }
