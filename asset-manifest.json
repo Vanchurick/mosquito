@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/mosquito/static/css/main.bb474c16.css",
-    "main.js": "/mosquito/static/js/main.0861ac0d.js",
+    "main.js": "/mosquito/static/js/main.d891e4b5.js",
     "static/media/logo.jpeg": "/mosquito/static/media/logo.b7c461a2d14850337b9a.jpeg",
     "index.html": "/mosquito/index.html",
     "main.bb474c16.css.map": "/mosquito/static/css/main.bb474c16.css.map",
-    "main.0861ac0d.js.map": "/mosquito/static/js/main.0861ac0d.js.map"
+    "main.d891e4b5.js.map": "/mosquito/static/js/main.d891e4b5.js.map"
   },
   "entrypoints": [
     "static/css/main.bb474c16.css",
-    "static/js/main.0861ac0d.js"
+    "static/js/main.d891e4b5.js"
   ]
 }
