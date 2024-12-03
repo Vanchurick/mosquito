@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
@@ -12,4 +12,13 @@ export const GlobalStyle = createGlobalStyle`
 	color: ${({ theme }) => theme.colors.textPrimary};
 	background-color: ${({ theme }) => theme.colors.bgLight};
   }
+
+  h1, h2 {
+	font-size: ${({ theme }) => theme.fontSize.title};
+  }
+`;
+
+export const FlexContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;

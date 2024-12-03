@@ -13,7 +13,7 @@ export const DAMAGE_ACTION = "ураження";
 export const ADJUSTMENT_ACTION = "корегування";
 
 export const AIRCRAFT_LABEL = "Тип засобу";
-export const VALKIRIA_AIRCRAFT = 'БпЛА "Валькірія"';
+export const VALKIRIA_AIRCRAFT = '"Валькірія"';
 export const MAVIC_AIRCRAFT = "Mavic 3T";
 export const MATRICE_30T_AIRCRAFT = "Matrice 30T";
 export const MATRICE_300_AIRCRAFT = "Matrice 300";

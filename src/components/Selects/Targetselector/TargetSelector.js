@@ -1,9 +1,13 @@
-import "./TargetSelector.css";
 import Button from "../../Button/Button";
 import SelectorNew from "../Selector/Selector";
 import { useState } from "react";
 import updateFormState from "../../../utils/updateFormState";
 import generateUniqId from "../../../utils/generateUniqId";
+import {
+  TargetsSelectorContainer,
+  WarningMessage,
+  TargetsTitle,
+} from "./StyledComponents";
 
 function Targetselector({ onAddNewTarget, targetsFormData }) {
   const [targetForm, setTargetForm] = useState(targetsFormData.targetData);
@@ -26,25 +30,24 @@ function Targetselector({ onAddNewTarget, targetsFormData }) {
     newTarget.id = generateUniqId(5);
 
     onAddNewTarget(newTarget);
+    setIsValidTarget(true);
   };
 
   const targetFormFields = Object.keys(targetForm);
 
   return (
-    <>
-      {!isValidTarget && <p className="warning">Заповніть усі поля</p>}
-      <div className="target-selector">
-        <h2>{targetsFormData.label}</h2>
-        {targetFormFields.map((fieldName) => (
-          <SelectorNew
-            key={fieldName}
-            handler={(newValue) => setTargetValue(fieldName, newValue)}
-            optionsData={targetForm[fieldName]}
-          />
-        ))}
-      </div>
+    <TargetsSelectorContainer $isValid={isValidTarget}>
+      <TargetsTitle>{targetsFormData.label}</TargetsTitle>
+      {!isValidTarget && <WarningMessage>Заповніть усі поля</WarningMessage>}
+      {targetFormFields.map((fieldName) => (
+        <SelectorNew
+          key={fieldName}
+          handler={(newValue) => setTargetValue(fieldName, newValue)}
+          optionsData={targetForm[fieldName]}
+        />
+      ))}
       <Button onClick={onAddTarget}>Додати</Button>
-    </>
+    </TargetsSelectorContainer>
   );
 }
 

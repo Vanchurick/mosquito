@@ -1,11 +1,17 @@
-import { SelectorContainer } from "../Selector/StyledComponents";
+import {
+  HiddenCheckbox,
+  CustomCheckbox,
+  CheckboxBox,
+  CheckboxLabel,
+} from "./StyledComponents";
 
 const Checkbox = ({ data, handler }) => {
   return (
-    <SelectorContainer>
-      <label>{data.label}</label>
-      <input type="checkbox" onChange={handler} checked={data.selected} />
-    </SelectorContainer>
+    <CustomCheckbox>
+      <CheckboxLabel>{data.label}</CheckboxLabel>
+      <HiddenCheckbox onChange={handler} checked={data.selected} />
+      <CheckboxBox />
+    </CustomCheckbox>
   );
 };
 
