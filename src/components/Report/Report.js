@@ -1,4 +1,10 @@
-import "./Report.css";
+import {
+  Highlights,
+  ReportContainer,
+  Paragraf,
+  List,
+  ListItem,
+} from "./StyledComponents";
 
 import {
   AIR_INTELIGENCE_ACTION,
@@ -24,62 +30,77 @@ const Report = ({ reportData }) => {
   } = reportData;
 
   const results = {
-    [AIR_INTELIGENCE_ACTION]: <p>За результатами аеророзвідки виявлено:</p>,
-    [DAMAGE_ACTION]: <p>За результатами заходів здійснено ураження:</p>,
+    [AIR_INTELIGENCE_ACTION]: (
+      <Paragraf>За результатами аеророзвідки виявлено:</Paragraf>
+    ),
+    [DAMAGE_ACTION]: (
+      <Paragraf>За результатами заходів здійснено ураження:</Paragraf>
+    ),
     [ADJUSTMENT_ACTION]: (
-      <p>За результатами заходів з корегування вогню здіснено ураження:</p>
+      <Paragraf>
+        За результатами заходів з корегування вогню здіснено ураження:
+      </Paragraf>
     ),
   };
 
-  const isJamming = jamming.selected
-    ? "Зафіксовано роботу ворожих засобів РЕБ"
-    : "Дію ворожих засобів РЕБ не зафіксовано<";
+  const isJamming = jamming.selected ? (
+    <>
+      <Highlights>Зафіксовано</Highlights> роботу ворожих засобів РЕБ
+    </>
+  ) : (
+    <>
+      Дію ворожих засобів РЕБ <Highlights>не зафіксовано</Highlights>
+    </>
+  );
 
   const pilotsList = pilots.selected
     ?.map((pilot) => `${pilot.value}`)
     .join(", ");
 
   const targetsList = (
-    <ul>
+    <List>
       {targets.selected.map((target) => (
-        <li key={target.id}>
-          <p>
+        <ListItem key={target.id}>
+          <Paragraf>
             {target.targetName.value}, за координатами{" "}
             {target.targetCoordinates.value}, околиці н.п.
-            {target.targetCity.value}, {target.targetDistance.distance} метрів
-            до ДКУ;
-          </p>
-        </li>
+            {target.targetCity.value}, {target.targetDistance.value} метрів до
+            ДКУ;
+          </Paragraf>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   );
 
   return (
-    <div className="report">
-      <p>
-        <b>
+    <ReportContainer>
+      <Paragraf>
+        <Highlights>
           {timeStart.selected?.value}-{timeFinish.selected?.value}{" "}
           {data.selected}
-        </b>
+        </Highlights>
         &nbsp; навпроти ділянки &nbsp;
-        <b>105 ПРИКЗ 1 прикк {area.selected?.value}</b>
-        &nbsp; складом &nbsp;<b>{unit.selected?.value}</b>&nbsp; проведено{" "}
-        <b>{action.selected?.value}</b>&nbsp; за допомогою &nbsp;
-        <b>{aircraft.selected?.value}</b>
+        <Highlights>105 ПРИКЗ 1 прикк {area.selected?.value}</Highlights>
+        &nbsp; складом &nbsp;<Highlights>{unit.selected?.value}</Highlights>
+        &nbsp; проведено <Highlights>{action.selected?.value}</Highlights>&nbsp;
+        за допомогою БпЛА&nbsp;
+        <Highlights>{aircraft.selected?.value}</Highlights>
         &nbsp; на напрямку &nbsp;
-        <b>
+        <Highlights>
           н.п. {directionUkr.selected?.value} (Україна) -{" "}
           {directionPidarasy.selected?.value} (рф).
-        </b>
+        </Highlights>
         &nbsp;
-      </p>
+      </Paragraf>
       {results[action.selected?.value]}
       {targetsList}
-      <p>
-        {isJamming} (висота {altitude.selected?.value} м, БпЛА{" "}
-        {aircraft.selected?.value}, пілоти: {pilotsList}).
-      </p>
-    </div>
+      <Paragraf>
+        {isJamming} (висота <Highlights>{altitude.selected?.value}</Highlights>
+        м, БпЛА <Highlights>{aircraft.selected?.value}</Highlights>,
+        пілоти:&nbsp;
+        <Highlights>{pilotsList}</Highlights>).
+      </Paragraf>
+    </ReportContainer>
   );
 };
 

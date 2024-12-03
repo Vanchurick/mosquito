@@ -1,11 +1,8 @@
-import "./Button.css";
+
+import { ButtonStyled } from "./StyledComponents";
 
 function Button({ children, ...props }) {
-  return (
-    <button className="button" {...props}>
-      {children}
-    </button>
-  );
+  return <ButtonStyled {...props}>{children}</ButtonStyled>;
 }
 
 export default Button;

@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { mainTheme } from "./theme";
-import { GlobalStyle } from "./StyledComponents";
+import { GlobalStyle, FlexContainer } from "./StyledComponents";
 import updateFormState from "./utils/updateFormState";
-
-import "./App.css";
 
 import Header from "./components/Header/Header";
 import Report from "./components/Report/Report";
@@ -46,7 +44,7 @@ function App() {
     <ThemeProvider theme={mainTheme}>
       <GlobalStyle />
       <Header />
-      <section id="report">
+      <FlexContainer>
         <InputsForm
           onSetNewData={setValueToReportData}
           onSetNewTarget={addNewTarget}
@@ -54,7 +52,7 @@ function App() {
           reportData={reportData}
         />
         <Report reportData={reportData} />
-      </section>
+      </FlexContainer>
     </ThemeProvider>
   );
 }
