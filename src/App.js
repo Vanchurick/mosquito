@@ -32,6 +32,21 @@ function App() {
     });
   };
 
+  const removeTarget = (id) => {
+    setReportData((prevDataForm) => {
+      console.log(prevDataForm);
+      return {
+        ...prevDataForm,
+        targets: {
+          ...prevDataForm.targets,
+          selected: prevDataForm.targets.selected.filter(
+            (target) => target.id !== id
+          ),
+        },
+      };
+    });
+  };
+
   const setIsJamming = (fieldName, value) => {
     setReportData((prevReportData) => {
       return {
@@ -50,6 +65,7 @@ function App() {
           onSetNewData={setValueToReportData}
           onSetNewTarget={addNewTarget}
           onSetJamming={setIsJamming}
+          onRemoveTarget={removeTarget}
           reportData={reportData}
         />
         <div style={{ flex: 1 }}>
