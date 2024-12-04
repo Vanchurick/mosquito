@@ -17,5 +17,8 @@ export const mainTheme = {
   fontSize: {
     text: "18px",
     title: "24px",
+	mobileText: '14px',
+	mobileTitle: '16px',
+
   },
 };
