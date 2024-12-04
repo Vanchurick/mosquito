@@ -19,4 +19,8 @@ export const InputDate = styled.input`
     cursor: pointer;
     border-color: ${({ theme }) => theme.colors.secondary};
   }
+
+  @media (max-width: 768px) {
+    font-size: ${({ theme }) => theme.fontSize.mobileText};
+  }
 `;
