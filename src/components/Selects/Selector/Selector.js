@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { ThemeContext } from "styled-components";
 
-const SelectorNew = ({ handler, optionsData }) => {
+const SelectorNew = ({ handler, optionsData, placeholder }) => {
   const { label, options, selected } = optionsData;
   const { colors } = useContext(ThemeContext);
 
@@ -54,11 +54,11 @@ const SelectorNew = ({ handler, optionsData }) => {
 
   return (
     <SelectorContainer>
-      <label>{label}</label>
+      {label && <label>{label}</label>}
       <CreatableSelect
         options={options}
         onChange={handleChange}
-        placeholder={`Виберіть значення`}
+        placeholder={placeholder || `Виберіть значення`}
         isMulti={isPilots}
         value={selected}
         isSearchable
