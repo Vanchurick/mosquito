@@ -4,7 +4,6 @@ export const TargetsSelectorContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: center;
   flex-wrap: wrap;
   border: 2px solid
     ${({ theme, $isValid }) =>
@@ -16,6 +15,7 @@ export const TargetsSelectorContainer = styled.div`
 export const WarningMessage = styled.p`
   color: ${({ theme }) => theme.colors.accent};
   border-bottom: 1px solid ${({ theme }) => theme.colors.accent};
+  margin: 0 auto;
 `;
 
 export const TargetsTitle = styled.h2`

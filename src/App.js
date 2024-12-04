@@ -9,6 +9,7 @@ import Report from "./components/Report/Report";
 import InputsForm from "./components/InputsForm/InputsForm";
 
 import { FORM_DATA } from "./assets/formData";
+import WhatsAppButton from "./components/WhatsAppButton/WhatsAppButton";
 
 function App() {
   const [reportData, setReportData] = useState(FORM_DATA);
@@ -51,7 +52,10 @@ function App() {
           onSetJamming={setIsJamming}
           reportData={reportData}
         />
-        <Report reportData={reportData} />
+        <div style={{ flex: 1 }}>
+          <Report reportData={reportData} />
+          <WhatsAppButton reportData={reportData} />
+        </div>
       </FlexContainer>
     </ThemeProvider>
   );
