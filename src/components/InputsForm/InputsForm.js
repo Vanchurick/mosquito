@@ -9,6 +9,7 @@ import { InputsContainer } from "./StyledComponents";
 function InputsForm({
   onSetJamming,
   onSetNewTarget,
+  onRemoveTarget,
   onSetNewData,
   reportData,
 }) {
@@ -39,6 +40,7 @@ function InputsForm({
           key={formField}
           targetsFormData={reportData[formField]}
           onAddNewTarget={(newTarget) => onSetNewTarget(formField, newTarget)}
+          removeTarget={onRemoveTarget}
         />
       );
     }
