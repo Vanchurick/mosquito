@@ -8,8 +8,9 @@ import {
   WarningMessage,
   TargetsTitle,
 } from "./StyledComponents";
+import TargetsLabels from "../../TargetsLabels/TargetsLabels";
 
-function Targetselector({ onAddNewTarget, targetsFormData }) {
+function Targetselector({ onAddNewTarget, removeTarget, targetsFormData }) {
   const [targetForm, setTargetForm] = useState(targetsFormData.targetData);
 
   const [isValidTarget, setIsValidTarget] = useState(true);
@@ -39,6 +40,10 @@ function Targetselector({ onAddNewTarget, targetsFormData }) {
     <>
       <TargetsSelectorContainer $isValid={isValidTarget}>
         <TargetsTitle>{targetsFormData.label}</TargetsTitle>
+        <TargetsLabels
+          targets={targetsFormData.selected}
+          removeTarget={removeTarget}
+        />
         {!isValidTarget && <WarningMessage>Заповніть усі поля</WarningMessage>}
         {targetFormFields.map((fieldName) => (
           <SelectorNew

@@ -4,16 +4,27 @@ export const TargetsLabelList = styled.ul`
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
   align-items: center;
   width: 100%;
 `;
 
 export const TargetsItem = styled.li`
-  margin: 0.5rem 1rem;
+  margin: 0.2rem;
   padding: 0.5rem;
-  background-color: #1e2a1f;
-  border-radius: 15px;
+  border: 1px solid ${({ theme }) => theme.colors.secondary};
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+`;
+
+export const RemoveButton = styled.button`
+  background-color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.primary};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => theme.colors.secondary};
+    cursor: pointer;
+  }
 `;

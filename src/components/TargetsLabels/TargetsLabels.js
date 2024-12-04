@@ -1,22 +1,19 @@
-import { TargetsLabelList, TargetsItem } from "./StyledComponents.js";
-import Button from "../Button/Button.js";
+import {
+  TargetsLabelList,
+  TargetsItem,
+  RemoveButton,
+} from "./StyledComponents.js";
 
 const TargetsLabels = ({ targets, removeTarget }) => {
-  const handleRemove = (targetId) => {
-    removeTarget((prevTargets) => {
-      const updatedTargets = [...prevTargets];
-
-      return updatedTargets.filter((target) => target.id !== targetId);
-    });
-  };
-
   return (
     <TargetsLabelList>
       {targets.map((target) => {
         return (
           <TargetsItem key={target.id}>
-            <p>{target.name}</p>
-            <Button onClick={() => handleRemove(target.id)}>X</Button>
+            <p>{target.targetName.value}</p>
+            <RemoveButton onClick={() => removeTarget(target.id)}>
+              x
+            </RemoveButton>
           </TargetsItem>
         );
       })}
