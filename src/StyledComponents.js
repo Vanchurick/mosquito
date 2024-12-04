@@ -11,14 +11,24 @@ export const GlobalStyle = createGlobalStyle`
 	font-size: ${({ theme }) => theme.fontSize.text};
 	color: ${({ theme }) => theme.colors.textPrimary};
 	background-color: ${({ theme }) => theme.colors.bgLight};
+
+	@media(max-width: 768px) {
+	font-size: ${({ theme }) => theme.fontSize.mobileText};
+	}
   }
 
   h1, h2 {
 	font-size: ${({ theme }) => theme.fontSize.title};
   }
+
+ 
 `;
 
 export const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
