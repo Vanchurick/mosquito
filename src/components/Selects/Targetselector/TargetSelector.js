@@ -36,18 +36,20 @@ function Targetselector({ onAddNewTarget, targetsFormData }) {
   const targetFormFields = Object.keys(targetForm);
 
   return (
-    <TargetsSelectorContainer $isValid={isValidTarget}>
-      <TargetsTitle>{targetsFormData.label}</TargetsTitle>
-      {!isValidTarget && <WarningMessage>Заповніть усі поля</WarningMessage>}
-      {targetFormFields.map((fieldName) => (
-        <SelectorNew
-          key={fieldName}
-          handler={(newValue) => setTargetValue(fieldName, newValue)}
-          optionsData={targetForm[fieldName]}
-        />
-      ))}
-      <Button onClick={onAddTarget}>Додати</Button>
-    </TargetsSelectorContainer>
+    <>
+      <TargetsSelectorContainer $isValid={isValidTarget}>
+        <TargetsTitle>{targetsFormData.label}</TargetsTitle>
+        {!isValidTarget && <WarningMessage>Заповніть усі поля</WarningMessage>}
+        {targetFormFields.map((fieldName) => (
+          <SelectorNew
+            key={fieldName}
+            handler={(newValue) => setTargetValue(fieldName, newValue)}
+            optionsData={targetForm[fieldName]}
+          />
+        ))}
+        <Button onClick={onAddTarget}>Додати</Button>
+      </TargetsSelectorContainer>
+    </>
   );
 }
 

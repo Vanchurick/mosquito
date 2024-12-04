@@ -62,9 +62,11 @@ const Report = ({ reportData }) => {
       {targets.selected.map((target) => (
         <ListItem key={target.id}>
           <Paragraf>
-            {target.targetName.value}, за координатами{" "}
-            {target.targetCoordinates.value}, околиці н.п.
-            {target.targetCity.value}, {target.targetDistance.value} метрів до
+            <Highlights>{target.targetName.value}</Highlights>, за координатами{" "}
+            <Highlights>{target.targetCoordinates.value}</Highlights>, околиці
+            н.п.
+            <Highlights>{target.targetCity.value}</Highlights>,{" "}
+            <Highlights>{target.targetDistance.value}</Highlights> метрів до
             ДКУ;
           </Paragraf>
         </ListItem>
@@ -72,8 +74,27 @@ const Report = ({ reportData }) => {
     </List>
   );
 
+  const noChanging = {
+    [AIR_INTELIGENCE_ACTION]: (
+      <Paragraf>
+        Змін в обстановці <Highlights>не виявлено.</Highlights>
+      </Paragraf>
+    ),
+    [DAMAGE_ACTION]: (
+      <Paragraf>
+        Цілі <Highlights>не уражено</Highlights>
+      </Paragraf>
+    ),
+    [ADJUSTMENT_ACTION]: (
+      <Paragraf>
+        Цілі <Highlights>не уражено</Highlights>
+      </Paragraf>
+    ),
+  };
+
   return (
     <ReportContainer>
+      <Highlights>ГОРВ 105 ПрикЗ</Highlights>
       <Paragraf>
         <Highlights>
           {timeStart.selected?.value}-{timeFinish.selected?.value}{" "}
@@ -92,7 +113,9 @@ const Report = ({ reportData }) => {
         </Highlights>
         &nbsp;
       </Paragraf>
-      {results[action.selected?.value]}
+      {targets.selected.length
+        ? results[action.selected?.value]
+        : noChanging[action.selected?.value]}
       {targetsList}
       <Paragraf>
         {isJamming} (висота <Highlights>{altitude.selected?.value}</Highlights>
