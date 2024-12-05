@@ -5,6 +5,10 @@ import { PILOTS_LABEL } from "../../../assets/consts";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { ThemeContext } from "styled-components";
+import {
+  TARGET_COORDINATES_LABEL,
+  PHONE_NUMBER_LABEL,
+} from "../../../assets/consts";
 
 const SelectorNew = ({ handler, optionsData, placeholder }) => {
   const { label, options, selected } = optionsData;
@@ -20,16 +24,19 @@ const SelectorNew = ({ handler, optionsData, placeholder }) => {
   }, []);
 
   const selectCustomStyles = {
-    control: (baseStyles, state) => ({
-      ...baseStyles,
-      borderColor: state.isFocused ? colors.secondary : colors.primary,
-      borderWidth: 2,
-      cursor: "pointer",
-      boxShadow: "none",
-      "&:hover": {
-        borderColor: colors.secondary,
-      },
-    }),
+    control: (baseStyles, state) => {
+		console.log(state)
+      return {
+        ...baseStyles,
+        borderColor: state.isFocused ? colors.secondary : colors.primary,
+        borderWidth: 2,
+        cursor: "pointer",
+        boxShadow: "none",
+        "&:hover": {
+          borderColor: colors.secondary,
+        },
+      };
+    },
     option: (baseStyles, { isSelected, isFocused }) => ({
       ...baseStyles,
       ":active": { backgroundColor: colors.secondary },
@@ -52,9 +59,24 @@ const SelectorNew = ({ handler, optionsData, placeholder }) => {
     }),
   };
 
+  const validateNewValue = (newValue) => {
+    const coordinatesRegex = /^\d{2}[A-Z]{1}\s[A-Z]{2}\s\d{5}\s\d{5}$/;
+    const phoneRegex = /^0\d{9}$/;
+
+    if (label === TARGET_COORDINATES_LABEL) {
+      return coordinatesRegex.test(newValue);
+    }
+
+    if (label === PHONE_NUMBER_LABEL) {
+      return phoneRegex.test(newValue);
+    }
+
+    return true;
+  };
+
   return (
     <SelectorContainer>
-      {label && <label>{label}</label>}
+      {label !== PHONE_NUMBER_LABEL && <label>{label}</label>}
       <CreatableSelect
         options={options}
         onChange={handleChange}
@@ -63,6 +85,8 @@ const SelectorNew = ({ handler, optionsData, placeholder }) => {
         value={selected}
         isSearchable
         styles={selectCustomStyles}
+        isValidNewOption={validateNewValue}
+		aria-invalid={true}
       />
     </SelectorContainer>
   );
