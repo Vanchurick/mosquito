@@ -44,7 +44,7 @@ export const TARGETS_LABEL = "Цілі";
 
 export const TARGET_CITY_LABEL = "Населений пункт";
 
-export const TARGET_COORDINATES_LABEL = "Координати";
+export const TARGET_COORDINATES_LABEL = "Координати MGRS";
 
 export const TARGET_DISTANCE_LABEL = "Відстань до ДКУ";
 
@@ -54,14 +54,12 @@ export const PILOTS_NEBO = "Небо";
 export const PILOTS_JMEN = "Жмен";
 
 export const TARGET_ALTITUDE_LABEL = "Висота";
-export const ALTITUDE_100 = '100';
-export const ALTITUDE_500 = '500';
-export const ALTITUDE_1000 = '1000';
+export const ALTITUDE_100 = "100";
+export const ALTITUDE_500 = "500";
+export const ALTITUDE_1000 = "1000";
 
-export const JAMMING_LABEL = 'Дія РЕБ'
+export const JAMMING_LABEL = "Дія РЕБ";
 
-export const DATA_LABEL = 'Дата'
+export const DATA_LABEL = "Дата";
 
-
-
-
+export const PHONE_NUMBER_LABEL = "Телефон";
