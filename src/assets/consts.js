@@ -1,7 +1,7 @@
 export const AREA_LABEL = "Ділянка";
-export const FIRST_OUT_POST = "1 ПРИКЗАС";
-export const SECOND_OUT_POST = "2 ПРИКЗАС";
-export const THIRD_OUT_POST = "3 ПРИКЗАС";
+export const FIRST_OUT_POST = "1 ПРИКК 1 ПРИКЗАС";
+export const SECOND_OUT_POST = "1 ПРИКК 2 ПРИКЗАС";
+export const THIRD_OUT_POST = "1 ПРИКК 3 ПРИКЗАС";
 
 export const UNITS_LABEL = "Підрозділ";
 export const PORV_NOVGOROD = "ПОРВ (з м.д. н.п. Новгород-Сіверський)";
@@ -35,16 +35,16 @@ export const TIME_FINISH_LABEL = "Завершення роботи";
 export const DEFAULT_TIME = "00:00";
 
 export const TARGET_NAME_LABEL = "Тип цілі";
-export const POSITIONS_TARGET = "Позиції";
-export const STAFF_TARGET = "Особовий склад";
-export const LIGHT_VEHICLE_TARGET = "Легковий транспортний засіб";
-export const HEAVY_VEHICLE_TARGET = "Вантажний транспортний засіб";
+export const POSITIONS_TARGET = "позиції";
+export const STAFF_TARGET = "особовий склад";
+export const LIGHT_VEHICLE_TARGET = "легковий транспортний засіб";
+export const HEAVY_VEHICLE_TARGET = "вантажний транспортний засіб";
 
 export const TARGETS_LABEL = "Цілі";
 
 export const TARGET_CITY_LABEL = "Населений пункт";
 
-export const TARGET_COORDINATES_LABEL = "Координати";
+export const TARGET_COORDINATES_LABEL = "Координати MGRS";
 
 export const TARGET_DISTANCE_LABEL = "Відстань до ДКУ";
 
@@ -54,14 +54,38 @@ export const PILOTS_NEBO = "Небо";
 export const PILOTS_JMEN = "Жмен";
 
 export const TARGET_ALTITUDE_LABEL = "Висота";
-export const ALTITUDE_100 = '100';
-export const ALTITUDE_500 = '500';
-export const ALTITUDE_1000 = '1000';
+export const ALTITUDE_100 = "100";
+export const ALTITUDE_500 = "500";
+export const ALTITUDE_1000 = "1000";
 
-export const JAMMING_LABEL = 'Дія РЕБ'
+export const JAMMING_LABEL = "Дія РЕБ";
 
-export const DATA_LABEL = 'Дата'
+export const DATA_LABEL = "Дата";
 
+export const PHONE_NUMBER_LABEL = "Телефон";
 
+export const TARGET_STATUS_AIR_LABEL = "Виявлено/оглянуто";
+export const TARGET_DETECTED = "Виявлено";
+export const TARGET_INSPECTED = "Оглянуто";
 
+export const TARGET_STATUS_DAMAGE_LABEL = "Уражено/не уражено";
+export const TARGET_DAMAGED = "уражено";
+export const TARGET_NO_DAMAGED = "не уражено";
 
+export const AMUNITION_LABEL = "Тип боєприпасу";
+export const AMUNITION_MINE_82 = "Міна 82мм";
+export const AMUNITION_MINE_60 = "Міна 60мм";
+export const AMUNITION_HANDMADE = "СВП";
+
+export const COUNT_AMUNITION = "Кількість";
+export const COUNT_AMUNITION_1 = "1";
+export const COUNT_AMUNITION_2 = "2";
+export const COUNT_AMUNITION_3 = "3";
+
+export const SUB_UNITS_LABEL = "Структурний підрозділ";
+export const GORV = "ГОРВ";
+export const PRIKK1 = "1 ПРИКК";
+export const PRIKK2 = "2 ПРИКК";
+export const PRIKK3 = "3 ПРИКК";
+export const PRIKK4 = "4 ПРИКК";
+export const PKSHR = "ПКШР";

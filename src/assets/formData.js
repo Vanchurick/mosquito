@@ -46,6 +46,27 @@ import {
   TARGETS_LABEL,
   JAMMING_LABEL,
   DATA_LABEL,
+  TARGET_STATUS_AIR_LABEL,
+  TARGET_DETECTED,
+  TARGET_INSPECTED,
+  TARGET_STATUS_DAMAGE_LABEL,
+  TARGET_DAMAGED,
+  TARGET_NO_DAMAGED,
+  AMUNITION_LABEL,
+  AMUNITION_MINE_82,
+  AMUNITION_MINE_60,
+  AMUNITION_HANDMADE,
+  COUNT_AMUNITION,
+  COUNT_AMUNITION_1,
+  COUNT_AMUNITION_2,
+  COUNT_AMUNITION_3,
+  SUB_UNITS_LABEL,
+  GORV,
+  PRIKK1,
+  PRIKK2,
+  PRIKK3,
+  PRIKK4,
+  PKSHR,
 } from "./consts";
 
 import createTimeSelectorOptions from "../utils/createTimeSelectorOptions";
@@ -53,6 +74,42 @@ import createTimeSelectorOptions from "../utils/createTimeSelectorOptions";
 const timeOptions = createTimeSelectorOptions();
 
 export const FORM_DATA = {
+  subUnit: {
+    label: SUB_UNITS_LABEL,
+    selected: null,
+    options: [
+      {
+        id: "GghfH34",
+        value: GORV,
+        label: GORV,
+      },
+      {
+        id: "J2134n45",
+        value: PRIKK1,
+        label: PRIKK1,
+      },
+      {
+        id: "Gsdf098jcH34",
+        value: PRIKK2,
+        label: PRIKK2,
+      },
+      {
+        id: "JkecK45",
+        value: PRIKK3,
+        label: PRIKK3,
+      },
+      {
+        id: "J3209dk45",
+        value: PRIKK4,
+        label: PRIKK4,
+      },
+      {
+        id: "Jdsflk45",
+        value: PKSHR,
+        label: PKSHR,
+      },
+    ],
+  },
   data: {
     label: DATA_LABEL,
     selected: "",
@@ -311,6 +368,80 @@ export const FORM_DATA = {
             id: "N4u01",
             value: ALTITUDE_1000,
             label: ALTITUDE_1000,
+          },
+        ],
+      },
+      targetStatusAir: {
+        label: TARGET_STATUS_AIR_LABEL,
+        selected: null,
+        options: [
+          {
+            id: "J4Ku9",
+            value: TARGET_DETECTED,
+            label: TARGET_DETECTED,
+          },
+          {
+            id: "L5M90",
+            value: TARGET_INSPECTED,
+            label: TARGET_INSPECTED,
+          },
+        ],
+      },
+      targetStatusDamage: {
+        label: TARGET_STATUS_DAMAGE_LABEL,
+        selected: null,
+        options: [
+          {
+            id: "N4K89",
+            value: TARGET_DAMAGED,
+            label: TARGET_DAMAGED,
+          },
+          {
+            id: "A8M90",
+            value: TARGET_NO_DAMAGED,
+            label: TARGET_NO_DAMAGED,
+          },
+        ],
+      },
+      amunition: {
+        label: AMUNITION_LABEL,
+        selected: null,
+        options: [
+          {
+            id: "J4ja9",
+            value: AMUNITION_MINE_82,
+            label: AMUNITION_MINE_82,
+          },
+          {
+            id: "L7490",
+            value: AMUNITION_MINE_60,
+            label: AMUNITION_MINE_60,
+          },
+          {
+            id: "Nkds01",
+            value: AMUNITION_HANDMADE,
+            label: AMUNITION_HANDMADE,
+          },
+        ],
+      },
+      countAmunition: {
+        label: COUNT_AMUNITION,
+        selected: null,
+        options: [
+          {
+            id: "J4sk9",
+            value: COUNT_AMUNITION_1,
+            label: COUNT_AMUNITION_1,
+          },
+          {
+            id: "L8kf0",
+            value: COUNT_AMUNITION_2,
+            label: COUNT_AMUNITION_2,
+          },
+          {
+            id: "N8dk1",
+            value: COUNT_AMUNITION_3,
+            label: COUNT_AMUNITION_3,
           },
         ],
       },
