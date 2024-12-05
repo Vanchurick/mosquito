@@ -34,7 +34,6 @@ function App() {
 
   const removeTarget = (id) => {
     setReportData((prevDataForm) => {
-      console.log(prevDataForm);
       return {
         ...prevDataForm,
         targets: {
