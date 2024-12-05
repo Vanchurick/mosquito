@@ -24,19 +24,16 @@ const SelectorNew = ({ handler, optionsData, placeholder }) => {
   }, []);
 
   const selectCustomStyles = {
-    control: (baseStyles, state) => {
-		console.log(state)
-      return {
-        ...baseStyles,
-        borderColor: state.isFocused ? colors.secondary : colors.primary,
-        borderWidth: 2,
-        cursor: "pointer",
-        boxShadow: "none",
-        "&:hover": {
-          borderColor: colors.secondary,
-        },
-      };
-    },
+    control: (baseStyles, state) => ({
+      ...baseStyles,
+      borderColor: state.isFocused ? colors.secondary : colors.primary,
+      borderWidth: 2,
+      cursor: "pointer",
+      boxShadow: "none",
+      "&:hover": {
+        borderColor: colors.secondary,
+      },
+    }),
     option: (baseStyles, { isSelected, isFocused }) => ({
       ...baseStyles,
       ":active": { backgroundColor: colors.secondary },
@@ -70,8 +67,6 @@ const SelectorNew = ({ handler, optionsData, placeholder }) => {
     if (label === PHONE_NUMBER_LABEL) {
       return phoneRegex.test(newValue);
     }
-
-    return true;
   };
 
   return (
@@ -86,7 +81,8 @@ const SelectorNew = ({ handler, optionsData, placeholder }) => {
         isSearchable
         styles={selectCustomStyles}
         isValidNewOption={validateNewValue}
-		aria-invalid={true}
+        noOptionsMessage={() => "Додайте варіанти"}
+        formatCreateLabel={(value) => `Додати "${value}"`}
       />
     </SelectorContainer>
   );

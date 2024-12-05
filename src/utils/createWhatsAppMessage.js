@@ -19,16 +19,16 @@ const createWhatsAppMessage = (reportData) => {
     altitude,
     jamming,
     targets,
+    subUnit,
   } = reportData;
 
   const eightSpaces = "%20%20%20%20%20%20%20%20";
   const newParagraf = "%0A";
 
   const results = {
-    [AIR_INTELIGENCE_ACTION]: "За результатами аеророзвідки виявлено:",
-    [DAMAGE_ACTION]: "За результатами заходів здійснено ураження:",
-    [ADJUSTMENT_ACTION]:
-      "За результатами заходів з корегування вогню здіснено ураження:",
+    [AIR_INTELIGENCE_ACTION]: "За результатами аеророзвідки:",
+    [DAMAGE_ACTION]: "За результатами заходів:",
+    [ADJUSTMENT_ACTION]: "За результатами заходів з корегування вогню:",
   };
 
   const noChanging = {
@@ -45,18 +45,26 @@ const createWhatsAppMessage = (reportData) => {
     ?.map((pilot) => `${pilot.value}`)
     .join(", ");
 
-  const targetsList = targets.selected.map(
-    (target) =>
-      `${newParagraf}${eightSpaces} - *${target.targetName.value}*, за координатами *${target.targetCoordinates.value}*, околиці н.п. *${target.targetCity.value}*, *${target.targetDistance.value}* метрів до ДКУ;`
-  );
+  const targetsList = targets.selected.map((target) => {
+    if (target.label === AIR_INTELIGENCE_ACTION) {
+      return `${newParagraf}${eightSpaces}- ${target.targetStatusAir.value} *${target.targetName.value}*, за координатами *${target.targetCoordinates.value}*, околиці  н.п. *${target.targetCity.value}*, *${target.targetDistance.value}* метрів до ДКУ;`;
+    }
+    return `${newParagraf}${eightSpaces}- Уражено *${target.targetName.value}*, за координатами *${target.targetCoordinates.value}*, околиці н.п. *${target.targetCity.value}*, *${target.targetDistance.value}* метрів до ДКУ. Ціль *${target.targetStatusDamage.value}*, використано ${target.countAmunition.value} *${target.amunition.value}*.`;
+  });
 
-  return `*ГОРВ 105 ПрикЗ*
-  ${newParagraf}${eightSpaces}*${timeStart.selected?.value}* - *${
-    timeFinish.selected?.value
-  }* *${data.selected}* навпроти ділянки *105 ПРИКЗ 1 прикк ${
+  const actionOptions = {
+    [AIR_INTELIGENCE_ACTION]: "аеророзвідки",
+    [DAMAGE_ACTION]: "ураження",
+    [ADJUSTMENT_ACTION]: "корегування вогню",
+  };
+
+  return `*${subUnit.selected?.value} 105 ПрикЗ*
+  ${newParagraf}${eightSpaces}*${data.selected}* в період з *${
+    timeStart.selected?.value
+  } до ${timeFinish.selected?.value}*  навпроти ділянки *105 ПРИКЗ ${
     area.selected?.value
   }* складом *${unit.selected?.value}* проведено *${
-    action.selected?.value
+    actionOptions[action.selected?.value]
   }* за допомогою БпЛА *${aircraft.selected?.value}* на напрямку *н.п. ${
     directionUkr.selected?.value
   } (Україна) - ${

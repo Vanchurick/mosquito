@@ -9,8 +9,14 @@ import {
   TargetsTitle,
 } from "./StyledComponents";
 import TargetsLabels from "../../TargetsLabels/TargetsLabels";
+import { AIR_INTELIGENCE_ACTION } from "../../../assets/consts";
 
-function Targetselector({ onAddNewTarget, removeTarget, targetsFormData }) {
+function Targetselector({
+  onAddNewTarget,
+  removeTarget,
+  targetsFormData,
+  actionType,
+}) {
   const [targetForm, setTargetForm] = useState(targetsFormData.targetData);
 
   const [isValidTarget, setIsValidTarget] = useState(true);
@@ -20,21 +26,104 @@ function Targetselector({ onAddNewTarget, removeTarget, targetsFormData }) {
   };
 
   const onAddTarget = () => {
-    const newTarget = {};
+    const {
+      amunition,
+      countAmunition,
+      targetCity,
+      targetCoordinates,
+      targetDistance,
+      targetName,
+      targetStatusAir,
+      targetStatusDamage,
+    } = targetForm;
+
     for (const field in targetForm) {
       if (!targetForm[field].selected) {
         setIsValidTarget(false);
         return;
       }
-      newTarget[field] = targetForm[field].selected;
     }
-    newTarget.id = generateUniqId(5);
 
-    onAddNewTarget(newTarget);
+    if (actionType === AIR_INTELIGENCE_ACTION) {
+      const airTarget = {
+        targetName: targetName.selected,
+        targetCity: targetCity.selected,
+        targetCoordinates: targetCoordinates.selected,
+        targetDistance: targetDistance.selected,
+        targetStatusAir: targetStatusAir.selected,
+      };
+
+      for (const field in airTarget) {
+        if (!targetForm[field].selected) {
+          setIsValidTarget(false);
+          return;
+        }
+      }
+
+      airTarget.label = actionType;
+      airTarget.id = generateUniqId(5);
+      onAddNewTarget(airTarget);
+      setIsValidTarget(true);
+      return;
+    }
+
+    const damageTarget = {
+      targetName: targetName.selected,
+      targetCity: targetCity.selected,
+      targetCoordinates: targetCoordinates.selected,
+      targetDistance: targetDistance.selected,
+      amunition: amunition.selected,
+      countAmunition: countAmunition.selected,
+      targetStatusDamage: targetStatusDamage.selected,
+    };
+
+    for (const field in damageTarget) {
+      if (!targetForm[field].selected) {
+        setIsValidTarget(false);
+        return;
+      }
+    }
+
+    damageTarget.label = actionType;
+    damageTarget.id = generateUniqId(5);
+    onAddNewTarget(damageTarget);
     setIsValidTarget(true);
   };
 
-  const targetFormFields = Object.keys(targetForm);
+  const makeFormFields = (targetForm) => {
+    const {
+      amunition,
+      countAmunition,
+      targetCity,
+      targetCoordinates,
+      targetDistance,
+      targetName,
+      targetStatusAir,
+      targetStatusDamage,
+    } = targetForm;
+
+    if (actionType === AIR_INTELIGENCE_ACTION) {
+      return {
+        targetName,
+        targetCity,
+        targetCoordinates,
+        targetDistance,
+        targetStatusAir,
+      };
+    }
+
+    return {
+      targetName,
+      targetCity,
+      targetCoordinates,
+      targetDistance,
+      amunition,
+      countAmunition,
+      targetStatusDamage,
+    };
+  };
+
+  const targetFormFields = Object.keys(makeFormFields(targetForm));
 
   return (
     <>

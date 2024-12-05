@@ -41,6 +41,7 @@ function InputsForm({
           targetsFormData={reportData[formField]}
           onAddNewTarget={(newTarget) => onSetNewTarget(formField, newTarget)}
           removeTarget={onRemoveTarget}
+		  actionType={reportData.action.selected?.value}
         />
       );
     }
