@@ -8,6 +8,9 @@ import { ThemeContext } from "styled-components";
 import {
   TARGET_COORDINATES_LABEL,
   PHONE_NUMBER_LABEL,
+  ACTION_LABEL,
+  TARGET_STATUS_AIR_LABEL,
+  TARGET_STATUS_DAMAGE_LABEL,
 } from "../../../assets/consts";
 
 const SelectorNew = ({ handler, optionsData, placeholder }) => {
@@ -57,6 +60,13 @@ const SelectorNew = ({ handler, optionsData, placeholder }) => {
   };
 
   const validateNewValue = (newValue) => {
+    if (
+      label === ACTION_LABEL ||
+      label === TARGET_STATUS_AIR_LABEL ||
+      label === TARGET_STATUS_DAMAGE_LABEL
+    )
+      return false;
+
     const coordinatesRegex = /^\d{2}[A-Z]{1}\s[A-Z]{2}\s\d{5}\s\d{5}$/;
     const phoneRegex = /^0\d{9}$/;
 
@@ -67,6 +77,10 @@ const SelectorNew = ({ handler, optionsData, placeholder }) => {
     if (label === PHONE_NUMBER_LABEL) {
       return phoneRegex.test(newValue);
     }
+
+    if (!newValue) return false;
+
+    return true;
   };
 
   return (
