@@ -3,11 +3,7 @@ import SelectorNew from "../Selector/Selector";
 import { useState } from "react";
 import updateFormState from "../../../utils/updateFormState";
 import generateUniqId from "../../../utils/generateUniqId";
-import {
-  TargetsSelectorContainer,
-  WarningMessage,
-  TargetsTitle,
-} from "./StyledComponents";
+import { TargetsSelectorContainer, WarningMessage } from "./StyledComponents";
 import TargetsLabels from "../../TargetsLabels/TargetsLabels";
 import { AIR_INTELIGENCE_ACTION } from "../../../assets/consts";
 
