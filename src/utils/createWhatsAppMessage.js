@@ -63,7 +63,7 @@ const createWhatsAppMessage = (reportData) => {
     timeStart.selected?.value
   } до ${timeFinish.selected?.value}*  навпроти ділянки *105 ПРИКЗ ${
     area.selected?.value
-  }* складом *${unit.selected?.value}* проведено *${
+  }* складом *${unit.selected?.value}* проведено заходи з *${
     actionOptions[action.selected?.value]
   }* за допомогою БпЛА *${aircraft.selected?.value}* на напрямку *н.п. ${
     directionUkr.selected?.value
