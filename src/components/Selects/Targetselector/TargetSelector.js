@@ -37,13 +37,6 @@ function Targetselector({
       targetStatusDamage,
     } = targetForm;
 
-    for (const field in targetForm) {
-      if (!targetForm[field].selected) {
-        setIsValidTarget(false);
-        return;
-      }
-    }
-
     if (actionType === AIR_INTELIGENCE_ACTION) {
       const airTarget = {
         targetName: targetName.selected,
@@ -128,7 +121,6 @@ function Targetselector({
   return (
     <>
       <TargetsSelectorContainer $isValid={isValidTarget}>
-        <TargetsTitle>{targetsFormData.label}</TargetsTitle>
         <TargetsLabels
           targets={targetsFormData.selected}
           removeTarget={removeTarget}

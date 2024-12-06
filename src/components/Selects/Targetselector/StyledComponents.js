@@ -5,9 +5,6 @@ export const TargetsSelectorContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  border: 2px solid
-    ${({ theme, $isValid }) =>
-      $isValid ? theme.colors.secondary : theme.colors.accent};
   border-radius: 1rem;
   margin-top: 1rem;
 `;
@@ -16,10 +13,4 @@ export const WarningMessage = styled.p`
   color: ${({ theme }) => theme.colors.accent};
   border-bottom: 1px solid ${({ theme }) => theme.colors.accent};
   margin: 0 auto;
-`;
-
-export const TargetsTitle = styled.h2`
-  font-size: ${({ theme }) => theme.fontSize.title};
-  color: ${({ theme }) => theme.colors.textPrimary};
-  margin: 1rem auto;
 `;
