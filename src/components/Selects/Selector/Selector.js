@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import CreatableSelect from "react-select/creatable";
 import { SelectorContainer } from "./StyledComponents";
 import { PILOTS_LABEL } from "../../../assets/consts";
