@@ -24,7 +24,7 @@ function InputsForm({
       return (
         <Targetselector
           key={formField}
-          targetsFormData={reportData[formField]}
+          selectedTargets={reportData[formField].selected}
           onAddNewTarget={(newTarget) => onSetNewTarget(formField, newTarget)}
           removeTarget={onRemoveTarget}
           actionType={reportData.action.selected?.value}
