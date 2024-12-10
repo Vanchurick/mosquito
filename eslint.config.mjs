@@ -18,7 +18,7 @@ export default [
       "no-console": "warn",
       "react/prop-types": "off",
       "react/react-in-jsx-scope": "off",
-      "react-hooks/exhaustive-deps": "warn",
+      "react-hooks/exhaustive-deps": process.env.NODE_ENV !== 'production' ? 'warn' : 'off',
     },
   },
   {
