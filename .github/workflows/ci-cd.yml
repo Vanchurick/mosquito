@@ -1,41 +1,17 @@
-name: Deploy React App to GitHub Pages
+name: CI/CD for React App
 
 on:
   push:
     branches:
-      - main  # або інша ваша основна гілка
-
-jobs:
-  name: CI/CD Pipeline
-
-on:
-  pull_request: # Запускається при створенні Pull Request
+      - main  # Виконується при пуші в main
+  pull_request:
     branches:
-      - main
+      - develop  # Виконується при створенні або оновленні Pull Request у гілку develop
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run linter
-        run: npm run lint
-
-      - name: Build React app
-        run: npm run build
-
   build-and-deploy:
+    # Цей job виконується тільки для пушів у main
+    if: github.event_name == 'push' && contains(github.ref, 'refs/heads/main')
     runs-on: ubuntu-latest
 
     steps:
@@ -61,3 +37,23 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build  # Вказуємо правильний шлях до директорії build
+
+  pr-check:
+    # Цей job виконується тільки для Pull Request у гілку develop
+    if: github.event_name == 'pull_request' && github.base_ref == 'develop'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run linter
+        run: npm run lint  # Виконуємо перевірку стилю коду
