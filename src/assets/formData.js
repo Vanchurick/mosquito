@@ -297,154 +297,155 @@ export const FORM_DATA = {
   targets: {
     label: TARGETS_LABEL,
     selected: [],
-    targetData: {
-      targetName: {
-        label: TARGET_NAME_LABEL,
-        selected: null,
-        options: [
-          {
-            id: "J5K88",
-            value: POSITIONS_TARGET,
-            label: POSITIONS_TARGET,
-          },
-          {
-            id: "L6M97",
-            value: STAFF_TARGET,
-            label: STAFF_TARGET,
-          },
-          {
-            id: "N7O02",
-            value: LIGHT_VEHICLE_TARGET,
-            label: LIGHT_VEHICLE_TARGET,
-          },
-          {
-            id: "K7O02",
-            value: HEAVY_VEHICLE_TARGET,
-            label: HEAVY_VEHICLE_TARGET,
-          },
-        ],
+  },
+};
+
+export const TARGET_FORM_DATA = {
+  targetName: {
+    label: TARGET_NAME_LABEL,
+    selected: null,
+    options: [
+      {
+        id: "J5K88",
+        value: POSITIONS_TARGET,
+        label: POSITIONS_TARGET,
       },
-      targetCity: {
-        label: TARGET_CITY_LABEL,
-        selected: null,
-        options: [
-          {
-            id: "J4K89",
-            value: SOPYCHI,
-            label: SOPYCHI,
-          },
-          {
-            id: "L8M90",
-            value: BILA_BEREZKA,
-            label: BILA_BEREZKA,
-          },
-          {
-            id: "N4O01",
-            value: AZAROVKA,
-            label: AZAROVKA,
-          },
-        ],
+      {
+        id: "L6M97",
+        value: STAFF_TARGET,
+        label: STAFF_TARGET,
       },
-      targetCoordinates: {
-        label: TARGET_COORDINATES_LABEL,
-        selected: null,
-        options: [],
+      {
+        id: "N7O02",
+        value: LIGHT_VEHICLE_TARGET,
+        label: LIGHT_VEHICLE_TARGET,
       },
-      targetDistance: {
-        label: TARGET_DISTANCE_LABEL,
-        selected: null,
-        options: [
-          {
-            id: "J45f9",
-            value: ALTITUDE_100,
-            label: ALTITUDE_100,
-          },
-          {
-            id: "L8a90",
-            value: ALTITUDE_500,
-            label: ALTITUDE_500,
-          },
-          {
-            id: "N4u01",
-            value: ALTITUDE_1000,
-            label: ALTITUDE_1000,
-          },
-        ],
+      {
+        id: "K7O02",
+        value: HEAVY_VEHICLE_TARGET,
+        label: HEAVY_VEHICLE_TARGET,
       },
-      targetStatusAir: {
-        label: TARGET_STATUS_AIR_LABEL,
-        selected: null,
-        options: [
-          {
-            id: "J4Ku9",
-            value: TARGET_DETECTED,
-            label: TARGET_DETECTED,
-          },
-          {
-            id: "L5M90",
-            value: TARGET_INSPECTED,
-            label: TARGET_INSPECTED,
-          },
-        ],
+    ],
+  },
+  targetCity: {
+    label: TARGET_CITY_LABEL,
+    selected: null,
+    options: [
+      {
+        id: "J4K89",
+        value: SOPYCHI,
+        label: SOPYCHI,
       },
-      targetStatusDamage: {
-        label: TARGET_STATUS_DAMAGE_LABEL,
-        selected: null,
-        options: [
-          {
-            id: "N4K89",
-            value: TARGET_DAMAGED,
-            label: TARGET_DAMAGED,
-          },
-          {
-            id: "A8M90",
-            value: TARGET_NO_DAMAGED,
-            label: TARGET_NO_DAMAGED,
-          },
-        ],
+      {
+        id: "L8M90",
+        value: BILA_BEREZKA,
+        label: BILA_BEREZKA,
       },
-      amunition: {
-        label: AMUNITION_LABEL,
-        selected: null,
-        options: [
-          {
-            id: "J4ja9",
-            value: AMUNITION_MINE_82,
-            label: AMUNITION_MINE_82,
-          },
-          {
-            id: "L7490",
-            value: AMUNITION_MINE_60,
-            label: AMUNITION_MINE_60,
-          },
-          {
-            id: "Nkds01",
-            value: AMUNITION_HANDMADE,
-            label: AMUNITION_HANDMADE,
-          },
-        ],
+      {
+        id: "N4O01",
+        value: AZAROVKA,
+        label: AZAROVKA,
       },
-      countAmunition: {
-        label: COUNT_AMUNITION,
-        selected: null,
-        options: [
-          {
-            id: "J4sk9",
-            value: COUNT_AMUNITION_1,
-            label: COUNT_AMUNITION_1,
-          },
-          {
-            id: "L8kf0",
-            value: COUNT_AMUNITION_2,
-            label: COUNT_AMUNITION_2,
-          },
-          {
-            id: "N8dk1",
-            value: COUNT_AMUNITION_3,
-            label: COUNT_AMUNITION_3,
-          },
-        ],
+    ],
+  },
+  targetCoordinates: {
+    label: TARGET_COORDINATES_LABEL,
+    selected: null,
+    options: [],
+  },
+  targetDistance: {
+    label: TARGET_DISTANCE_LABEL,
+    selected: null,
+    options: [
+      {
+        id: "J45f9",
+        value: ALTITUDE_100,
+        label: ALTITUDE_100,
       },
-    },
+      {
+        id: "L8a90",
+        value: ALTITUDE_500,
+        label: ALTITUDE_500,
+      },
+      {
+        id: "N4u01",
+        value: ALTITUDE_1000,
+        label: ALTITUDE_1000,
+      },
+    ],
+  },
+  targetStatusAir: {
+    label: TARGET_STATUS_AIR_LABEL,
+    selected: null,
+    options: [
+      {
+        id: "J4Ku9",
+        value: TARGET_DETECTED,
+        label: TARGET_DETECTED,
+      },
+      {
+        id: "L5M90",
+        value: TARGET_INSPECTED,
+        label: TARGET_INSPECTED,
+      },
+    ],
+  },
+  targetStatusDamage: {
+    label: TARGET_STATUS_DAMAGE_LABEL,
+    selected: null,
+    options: [
+      {
+        id: "N4K89",
+        value: TARGET_DAMAGED,
+        label: TARGET_DAMAGED,
+      },
+      {
+        id: "A8M90",
+        value: TARGET_NO_DAMAGED,
+        label: TARGET_NO_DAMAGED,
+      },
+    ],
+  },
+  amunition: {
+    label: AMUNITION_LABEL,
+    selected: null,
+    options: [
+      {
+        id: "J4ja9",
+        value: AMUNITION_MINE_82,
+        label: AMUNITION_MINE_82,
+      },
+      {
+        id: "L7490",
+        value: AMUNITION_MINE_60,
+        label: AMUNITION_MINE_60,
+      },
+      {
+        id: "Nkds01",
+        value: AMUNITION_HANDMADE,
+        label: AMUNITION_HANDMADE,
+      },
+    ],
+  },
+  countAmunition: {
+    label: COUNT_AMUNITION,
+    selected: null,
+    options: [
+      {
+        id: "J4sk9",
+        value: COUNT_AMUNITION_1,
+        label: COUNT_AMUNITION_1,
+      },
+      {
+        id: "L8kf0",
+        value: COUNT_AMUNITION_2,
+        label: COUNT_AMUNITION_2,
+      },
+      {
+        id: "N8dk1",
+        value: COUNT_AMUNITION_3,
+        label: COUNT_AMUNITION_3,
+      },
+    ],
   },
 };

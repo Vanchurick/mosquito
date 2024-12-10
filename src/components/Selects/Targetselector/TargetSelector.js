@@ -6,14 +6,15 @@ import generateUniqId from "../../../utils/generateUniqId";
 import { TargetsSelectorContainer, WarningMessage } from "./StyledComponents";
 import TargetsLabels from "../../TargetsLabels/TargetsLabels";
 import { AIR_INTELIGENCE_ACTION } from "../../../assets/consts";
+import { TARGET_FORM_DATA } from "../../../assets/formData";
 
 function Targetselector({
   onAddNewTarget,
   removeTarget,
-  targetsFormData,
+  selectedTargets,
   actionType,
 }) {
-  const [targetForm, setTargetForm] = useState(targetsFormData.targetData);
+  const [targetForm, setTargetForm] = useState(TARGET_FORM_DATA);
 
   const [isValidTarget, setIsValidTarget] = useState(true);
 
@@ -118,7 +119,7 @@ function Targetselector({
     <>
       <TargetsSelectorContainer $isValid={isValidTarget}>
         <TargetsLabels
-          targets={targetsFormData.selected}
+          targets={selectedTargets}
           removeTarget={removeTarget}
         />
         {!isValidTarget && <WarningMessage>Заповніть усі поля</WarningMessage>}
