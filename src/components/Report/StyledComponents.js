@@ -10,6 +10,10 @@ export const Highlights = styled.span`
   font-weight: 700;
 `;
 
+export const Italic = styled.span`
+  font-style: italic;
+`;
+
 export const Paragraf = styled.p`
   margin: 1rem 0;
   line-height: 1.2rem;

@@ -4,6 +4,7 @@ import {
   Paragraf,
   List,
   ListItem,
+  Italic,
 } from "./StyledComponents";
 
 import {
@@ -42,34 +43,18 @@ const Report = ({ reportData }) => {
 
   const noChanging = {
     [AIR_INTELIGENCE_ACTION]: (
-      <Paragraf>
-        Змін в обстановці <Highlights>не виявлено.</Highlights>
-      </Paragraf>
+      <Paragraf>Змін в обстановці не виявлено.</Paragraf>
     ),
-    [DAMAGE_ACTION]: (
-      <Paragraf>
-        Цілі <Highlights>не уражено.</Highlights>
-      </Paragraf>
-    ),
-    [ADJUSTMENT_ACTION]: (
-      <Paragraf>
-        Цілі <Highlights>не уражено.</Highlights>
-      </Paragraf>
-    ),
+    [DAMAGE_ACTION]: <Paragraf>Цілі не уражено.</Paragraf>,
+    [ADJUSTMENT_ACTION]: <Paragraf>Цілі не уражено.</Paragraf>,
   };
 
-  const isJamming = jamming.selected ? (
-    <>
-      <Highlights>Зафіксовано</Highlights> роботу ворожих засобів РЕБ
-    </>
-  ) : (
-    <>
-      Дію ворожих засобів РЕБ <Highlights>не зафіксовано</Highlights>
-    </>
-  );
+  const isJamming = jamming.selected
+    ? "Зафіксовано роботу ворожих засобів РЕБ."
+    : "Дію ворожих засобів РЕБ не зафіксовано.";
 
   const pilotsList = pilots.selected
-    ?.map((pilot) => `${pilot.value}`)
+    ?.map((pilot) => `«${pilot.value}»`)
     .join(", ");
 
   const targetsList = (
@@ -79,14 +64,14 @@ const Report = ({ reportData }) => {
           return (
             <ListItem key={target.id}>
               <Paragraf>
-                {target.targetStatusAir.value}&nbsp;
-                <Highlights>{target.targetName.value}</Highlights>, за
-                координатами&nbsp;
-                <Highlights>{target.targetCoordinates.value}</Highlights>,
-                околиці н.п.&nbsp;
-                <Highlights>{target.targetCity.value}</Highlights>,&nbsp;
-                <Highlights>{target.targetDistance.value}</Highlights> метрів до
-                ДКУ;
+                <Highlights>
+                  {target.targetStatusAir.value}&nbsp;
+                  {target.targetName.value}
+                </Highlights>
+                , за координатами&nbsp;
+                {target.targetCoordinates.value}, околиці н.п.&nbsp;
+                {target.targetCity.value},&nbsp;
+                {target.targetDistance.value} метрів до ДКУ;
               </Paragraf>
             </ListItem>
           );
@@ -95,18 +80,18 @@ const Report = ({ reportData }) => {
         return (
           <ListItem key={target.id}>
             <Paragraf>
-              Уражено&nbsp;
-              <Highlights>{target.targetName.value}</Highlights>, за
-              координатами&nbsp;
-              <Highlights>{target.targetCoordinates.value}</Highlights>, околиці
-              н.п.&nbsp;
-              <Highlights>{target.targetCity.value}</Highlights>, &nbsp;
-              <Highlights>{target.targetDistance.value}</Highlights> метрів до
-              ДКУ. Ціль&nbsp;
-              <Highlights>{target.targetStatusDamage.value}</Highlights>,
-              використано&nbsp;
+              <Highlights>
+                Уражено&nbsp;
+                {target.targetName.value}
+              </Highlights>
+              , за координатами&nbsp;
+              {target.targetCoordinates.value}, околиці н.п.&nbsp;
+              {target.targetCity.value}, &nbsp;
+              {target.targetDistance.value} метрів до ДКУ. Ціль&nbsp;
+              {target.targetStatusDamage.value}, використано&nbsp;
               {target.countAmunition.value}&nbsp;
-              <Highlights>{target.amunition.value}</Highlights>.
+              {target.amunition.value}{" "}
+              <Italic>({target.amunitionAction.value})</Italic>.
             </Paragraf>
           </ListItem>
         );
@@ -116,7 +101,7 @@ const Report = ({ reportData }) => {
 
   const actionOptions = {
     [AIR_INTELIGENCE_ACTION]: "аеророзвідки",
-    [DAMAGE_ACTION]: "ураження",
+    [DAMAGE_ACTION]: "ураження противника",
     [ADJUSTMENT_ACTION]: "корегування вогню",
   };
 
@@ -124,34 +109,33 @@ const Report = ({ reportData }) => {
     <ReportContainer>
       <Highlights>{subUnit.selected?.value} 105 ПрикЗ</Highlights>
       <Paragraf>
-        <Highlights>
-          {data.selected} в період з {timeStart.selected?.value} до{" "}
-          {timeFinish.selected?.value}
-        </Highlights>
-        &nbsp; навпроти ділянки &nbsp;
-        <Highlights>105 ПРИКЗ {area.selected?.value}</Highlights>
-        &nbsp; складом &nbsp;<Highlights>{unit.selected?.value}</Highlights>
-        &nbsp; проведено заходи з{" "}
-        <Highlights>{actionOptions[action.selected?.value]}</Highlights>&nbsp;
-        за допомогою БпЛА&nbsp;
-        <Highlights>{aircraft.selected?.value}</Highlights>
-        &nbsp; на напрямку &nbsp;
-        <Highlights>
-          н.п. {directionUkr.selected?.value} (Україна) -{" "}
-          {directionPidarasy.selected?.value} (рф).
-        </Highlights>
-        &nbsp;
+        {data.selected}, в період {timeStart.selected?.value} -{" "}
+        {timeFinish.selected?.value} ГрАР{" "}
+        <Italic>{unit.selected?.value}</Italic> проведено заходи{" "}
+        {actionOptions[action.selected?.value]}, із використанням{" "}
+        {aircraft.selected?.value} на напрямку н.п.{" "}
+        {directionUkr.selected?.value} (Україна) – н.п.{" "}
+        {directionPidarasy.selected?.value} (рф), ділянка відповідальності{" "}
+        {area.selected?.value}.
       </Paragraf>
       {targets.selected.length
         ? results[action.selected?.value]
         : noChanging[action.selected?.value]}
       {targetsList}
+      {action.selected?.value !== AIR_INTELIGENCE_ACTION && (
+        <>
+          <Paragraf>
+            <Highlights>Втрати противника:</Highlights>
+          </Paragraf>
+          <Paragraf>Уточнюються.</Paragraf>
+        </>
+      )}
       <Paragraf>
-        {isJamming} (висота <Highlights>{altitude.selected?.value}</Highlights>
-        м, БпЛА <Highlights>{aircraft.selected?.value}</Highlights>,
-        пілоти:&nbsp;
-        <Highlights>{pilotsList}</Highlights>).
-      </Paragraf>
+        {isJamming}{" "}
+        {action.selected?.value === AIR_INTELIGENCE_ACTION &&
+          `Висота ${altitude.selected?.value} м.`}
+      </Paragraf>{" "}
+      <Paragraf>Пілоти: {pilotsList}.</Paragraf>
     </ReportContainer>
   );
 };

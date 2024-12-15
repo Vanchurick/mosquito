@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ThemeProvider } from "styled-components";
 import { mainTheme } from "./theme";
 import { GlobalStyle, FlexContainer } from "./StyledComponents";
@@ -7,12 +7,14 @@ import updateFormState from "./utils/updateFormState";
 import Header from "./components/Header/Header";
 import Report from "./components/Report/Report";
 import InputsForm from "./components/InputsForm/InputsForm";
+import Modal from "./components/Modal/Modal";
 
 import { FORM_DATA } from "./assets/formData";
 import WhatsAppButton from "./components/WhatsAppButton/WhatsAppButton";
 
 function App() {
   const [reportData, setReportData] = useState(FORM_DATA);
+  const modal = useRef();
 
   const setValueToReportData = (fieldName, selectedOption) => {
     updateFormState(fieldName, selectedOption, setReportData);
@@ -58,6 +60,7 @@ function App() {
   return (
     <ThemeProvider theme={mainTheme}>
       <GlobalStyle />
+      <Modal ref={modal}></Modal>
       <Header />
       <FlexContainer>
         <InputsForm
