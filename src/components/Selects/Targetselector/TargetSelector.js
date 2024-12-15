@@ -32,6 +32,7 @@ function Targetselector({
       targetName,
       targetStatusAir,
       targetStatusDamage,
+	  amunitionAction,
     } = targetForm;
 
     if (actionType === AIR_INTELIGENCE_ACTION) {
@@ -63,6 +64,7 @@ function Targetselector({
       targetCoordinates: targetCoordinates.selected,
       targetDistance: targetDistance.selected,
       amunition: amunition.selected,
+	  amunitionAction: amunitionAction.selected,
       countAmunition: countAmunition.selected,
       targetStatusDamage: targetStatusDamage.selected,
     };
@@ -90,6 +92,7 @@ function Targetselector({
       targetName,
       targetStatusAir,
       targetStatusDamage,
+	  amunitionAction,
     } = targetForm;
 
     if (actionType === AIR_INTELIGENCE_ACTION) {
@@ -108,6 +111,7 @@ function Targetselector({
       targetCoordinates,
       targetDistance,
       amunition,
+	  amunitionAction,
       countAmunition,
       targetStatusDamage,
     };

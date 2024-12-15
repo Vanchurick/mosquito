@@ -1,10 +1,10 @@
 export const AREA_LABEL = "Ділянка";
-export const FIRST_OUT_POST = "1 ПРИКК 1 ПРИКЗАС";
-export const SECOND_OUT_POST = "1 ПРИКК 2 ПРИКЗАС";
-export const THIRD_OUT_POST = "1 ПРИКК 3 ПРИКЗАС";
+export const FIRST_OUT_POST = "1 прикзас 1 прикк";
+export const SECOND_OUT_POST = "2 прикзас 1 прикк";
+export const THIRD_OUT_POST = "3 прикзас 1 прикк";
 
 export const UNITS_LABEL = "Підрозділ";
-export const PORV_NOVGOROD = "ПОРВ (з м.д. н.п. Новгород-Сіверський)";
+export const PORV_NOVGOROD = "ПОРВ «Новгород-Сіверський»";
 export const PORV_SEMENIVKA = "ПОРВ (з м.д. н.п. Семенівка)";
 
 export const ACTION_LABEL = "Вид заходів";
@@ -13,7 +13,7 @@ export const DAMAGE_ACTION = "ураження";
 export const ADJUSTMENT_ACTION = "корегування";
 
 export const AIRCRAFT_LABEL = "Тип засобу";
-export const VALKIRIA_AIRCRAFT = '"Валькірія"';
+export const VALKIRIA_AIRCRAFT = 'БпЛА "Валькірія"';
 export const MAVIC_AIRCRAFT = "Mavic 3T";
 export const MATRICE_30T_AIRCRAFT = "Matrice 30T";
 export const MATRICE_300_AIRCRAFT = "Matrice 300";
@@ -89,3 +89,7 @@ export const PRIKK2 = "2 ПРИКК";
 export const PRIKK3 = "3 ПРИКК";
 export const PRIKK4 = "4 ПРИКК";
 export const PKSHR = "ПКШР";
+
+export const AMUNITION_ACTION_LABEL = "Принцип дії боєприпасу";
+export const KUMULYATIV = "кумулятивний";
+export const ULAMKOVO_FUGAS = "уламково-фугасний";
