@@ -67,6 +67,9 @@ import {
   PRIKK3,
   PRIKK4,
   PKSHR,
+  AMUNITION_ACTION_LABEL,
+  KUMULYATIV,
+  ULAMKOVO_FUGAS,
 } from "./consts";
 
 import createTimeSelectorOptions from "../utils/createTimeSelectorOptions";
@@ -424,6 +427,22 @@ export const TARGET_FORM_DATA = {
         id: "Nkds01",
         value: AMUNITION_HANDMADE,
         label: AMUNITION_HANDMADE,
+      },
+    ],
+  },
+  amunitionAction: {
+    label: AMUNITION_ACTION_LABEL,
+    selected: null,
+    options: [
+      {
+        id: "J4sasdask9",
+        value: KUMULYATIV,
+        label: KUMULYATIV,
+      },
+      {
+        id: "L8kqerwvf0",
+        value: ULAMKOVO_FUGAS,
+        label: ULAMKOVO_FUGAS,
       },
     ],
   },
