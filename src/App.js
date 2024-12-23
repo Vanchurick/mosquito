@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { mainTheme } from "./theme";
 import { GlobalStyle, FlexContainer } from "./StyledComponents";
@@ -7,14 +7,12 @@ import updateFormState from "./utils/updateFormState";
 import Header from "./components/Header/Header";
 import Report from "./components/Report/Report";
 import InputsForm from "./components/InputsForm/InputsForm";
-import Modal from "./components/Modal/Modal";
 
 import { FORM_DATA } from "./assets/formData";
 import WhatsAppButton from "./components/WhatsAppButton/WhatsAppButton";
 
 function App() {
   const [reportData, setReportData] = useState(FORM_DATA);
-  const modal = useRef();
 
   const setValueToReportData = (fieldName, selectedOption) => {
     updateFormState(fieldName, selectedOption, setReportData);
@@ -48,6 +46,25 @@ function App() {
     });
   };
 
+  const editTarget = (id, editedTarget) => {
+    setReportData((prevDataForm) => {
+      return {
+        ...prevDataForm,
+        targets: {
+          ...prevDataForm.targets,
+          selected: [
+            ...prevDataForm.targets.selected.map((target) => {
+              if (target.id === id) {
+                return { ...target, ...editedTarget };
+              }
+              return target;
+            }),
+          ],
+        },
+      };
+    });
+  };
+
   const setIsJamming = (fieldName, value) => {
     setReportData((prevReportData) => {
       return {
@@ -60,7 +77,6 @@ function App() {
   return (
     <ThemeProvider theme={mainTheme}>
       <GlobalStyle />
-      <Modal ref={modal}></Modal>
       <Header />
       <FlexContainer>
         <InputsForm
@@ -68,6 +84,7 @@ function App() {
           onSetNewTarget={addNewTarget}
           onSetJamming={setIsJamming}
           onRemoveTarget={removeTarget}
+          onEditTarget={editTarget}
           reportData={reportData}
         />
         <div style={{ flex: 1 }}>
