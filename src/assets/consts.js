@@ -69,8 +69,8 @@ export const TARGET_DETECTED = "Виявлено";
 export const TARGET_INSPECTED = "Оглянуто";
 
 export const TARGET_STATUS_DAMAGE_LABEL = "Уражено/не уражено";
-export const TARGET_DAMAGED = "уражено";
-export const TARGET_NO_DAMAGED = "не уражено";
+export const TARGET_DAMAGED = "Уражено";
+export const TARGET_NO_DAMAGED = "Не уражено";
 
 export const AMUNITION_LABEL = "Тип боєприпасу";
 export const AMUNITION_MINE_82 = "Міна 82мм";

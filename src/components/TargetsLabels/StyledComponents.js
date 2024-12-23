@@ -18,7 +18,7 @@ export const TargetsItem = styled.li`
   gap: 0.5rem;
 `;
 
-export const RemoveButton = styled.button`
+export const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.secondary};
   color: ${({ theme }) => theme.colors.primary};
 

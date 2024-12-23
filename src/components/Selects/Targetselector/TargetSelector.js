@@ -4,18 +4,15 @@ import { useState } from "react";
 import updateFormState from "../../../utils/updateFormState";
 import generateUniqId from "../../../utils/generateUniqId";
 import { TargetsSelectorContainer, WarningMessage } from "./StyledComponents";
-import TargetsLabels from "../../TargetsLabels/TargetsLabels";
-import { AIR_INTELIGENCE_ACTION } from "../../../assets/consts";
-import { TARGET_FORM_DATA } from "../../../assets/formData";
 
 function Targetselector({
   onAddNewTarget,
-  removeTarget,
-  selectedTargets,
   actionType,
+  derivedTargetForm,
+  isEdit,
+  onEditTarget,
 }) {
-  const [targetForm, setTargetForm] = useState(TARGET_FORM_DATA);
-
+  const [targetForm, setTargetForm] = useState(derivedTargetForm);
   const [isValidTarget, setIsValidTarget] = useState(true);
 
   const setTargetValue = (fieldName, selectedOption) => {
@@ -23,120 +20,54 @@ function Targetselector({
   };
 
   const onAddTarget = () => {
-    const {
-      amunition,
-      countAmunition,
-      targetCity,
-      targetCoordinates,
-      targetDistance,
-      targetName,
-      targetStatusAir,
-      targetStatusDamage,
-	  amunitionAction,
-    } = targetForm;
+    const newTarget = {};
 
-    if (actionType === AIR_INTELIGENCE_ACTION) {
-      const airTarget = {
-        targetName: targetName.selected,
-        targetCity: targetCity.selected,
-        targetCoordinates: targetCoordinates.selected,
-        targetDistance: targetDistance.selected,
-        targetStatusAir: targetStatusAir.selected,
-      };
-
-      for (const field in airTarget) {
-        if (!targetForm[field].selected) {
-          setIsValidTarget(false);
-          return;
-        }
-      }
-
-      airTarget.label = actionType;
-      airTarget.id = generateUniqId(5);
-      onAddNewTarget(airTarget);
-      setIsValidTarget(true);
-      return;
-    }
-
-    const damageTarget = {
-      targetName: targetName.selected,
-      targetCity: targetCity.selected,
-      targetCoordinates: targetCoordinates.selected,
-      targetDistance: targetDistance.selected,
-      amunition: amunition.selected,
-	  amunitionAction: amunitionAction.selected,
-      countAmunition: countAmunition.selected,
-      targetStatusDamage: targetStatusDamage.selected,
-    };
-
-    for (const field in damageTarget) {
-      if (!targetForm[field].selected) {
+    for (const key in targetForm) {
+      if (!targetForm[key].selected) {
         setIsValidTarget(false);
         return;
       }
+      newTarget[key] = targetForm[key].selected;
     }
 
-    damageTarget.label = actionType;
-    damageTarget.id = generateUniqId(5);
-    onAddNewTarget(damageTarget);
+    newTarget.id = generateUniqId(5);
+    newTarget.label = actionType;
+    onAddNewTarget(newTarget);
     setIsValidTarget(true);
   };
 
-  const makeFormFields = (targetForm) => {
-    const {
-      amunition,
-      countAmunition,
-      targetCity,
-      targetCoordinates,
-      targetDistance,
-      targetName,
-      targetStatusAir,
-      targetStatusDamage,
-	  amunitionAction,
-    } = targetForm;
+  const onEdit = () => {
+    const newTarget = {};
 
-    if (actionType === AIR_INTELIGENCE_ACTION) {
-      return {
-        targetName,
-        targetCity,
-        targetCoordinates,
-        targetDistance,
-        targetStatusAir,
-      };
+    for (const key in targetForm) {
+      if (!targetForm[key].selected) {
+        setIsValidTarget(false);
+        return;
+      }
+      newTarget[key] = targetForm[key].selected;
     }
-
-    return {
-      targetName,
-      targetCity,
-      targetCoordinates,
-      targetDistance,
-      amunition,
-	  amunitionAction,
-      countAmunition,
-      targetStatusDamage,
-    };
+    onEditTarget(newTarget);
+    setIsValidTarget(true);
   };
 
-  const targetFormFields = Object.keys(makeFormFields(targetForm));
+  const targetFormFields = Object.keys(targetForm);
 
   return (
-    <>
-      <TargetsSelectorContainer $isValid={isValidTarget}>
-        <TargetsLabels
-          targets={selectedTargets}
-          removeTarget={removeTarget}
-        />
-        {!isValidTarget && <WarningMessage>Заповніть усі поля</WarningMessage>}
-        {targetFormFields.map((fieldName) => (
+    <TargetsSelectorContainer $isValid={isValidTarget}>
+      {!isValidTarget && <WarningMessage>Заповніть усі поля</WarningMessage>}
+      {targetFormFields.map((fieldName) => {
+        return (
           <SelectorNew
             key={fieldName}
             handler={(newValue) => setTargetValue(fieldName, newValue)}
             optionsData={targetForm[fieldName]}
           />
-        ))}
-        <Button onClick={onAddTarget}>Додати</Button>
-      </TargetsSelectorContainer>
-    </>
+        );
+      })}
+      <Button onClick={isEdit ? onEdit : onAddTarget}>
+        {isEdit ? "Змінити" : "Додати"}
+      </Button>
+    </TargetsSelectorContainer>
   );
 }
 

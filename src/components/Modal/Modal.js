@@ -1,7 +1,6 @@
 import { createPortal } from "react-dom";
 import { forwardRef, useImperativeHandle, useRef } from "react";
-import Button from "../Button/Button";
-import { Dialog, Form } from "./StyledComponents";
+import { Dialog } from "./StyledComponents";
 
 const Modal = forwardRef(function Modal({ children }, ref) {
   const dialog = useRef();
@@ -20,9 +19,6 @@ const Modal = forwardRef(function Modal({ children }, ref) {
   return createPortal(
     <Dialog ref={dialog}>
       {children}
-      <Form method="dialog">
-        <Button>Закрити</Button>
-      </Form>
     </Dialog>,
     document.getElementById("modal")
   );
