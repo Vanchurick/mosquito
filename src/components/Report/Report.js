@@ -81,14 +81,13 @@ const Report = ({ reportData }) => {
           <ListItem key={target.id}>
             <Paragraf>
               <Highlights>
-                Уражено&nbsp;
+                {target.targetStatusDamage.value}&nbsp;
                 {target.targetName.value}
               </Highlights>
               , за координатами&nbsp;
               {target.targetCoordinates.value}, околиці н.п.&nbsp;
               {target.targetCity.value}, &nbsp;
-              {target.targetDistance.value} метрів до ДКУ. Ціль&nbsp;
-              {target.targetStatusDamage.value}, використано&nbsp;
+              {target.targetDistance.value} метрів до ДКУ. Використано&nbsp;
               {target.countAmunition.value}&nbsp;
               {target.amunition.value}{" "}
               <Italic>({target.amunitionAction.value})</Italic>.
