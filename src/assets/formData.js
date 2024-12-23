@@ -353,11 +353,7 @@ export const TARGET_FORM_DATA = {
   },
   targetCoordinates: {
     label: TARGET_COORDINATES_LABEL,
-    selected: {
-      id: "id",
-      label: "36U WC 65454 65454",
-      value: "36U WC 65454 65454",
-    },
+    selected: null,
     options: [],
   },
   targetDistance: {
