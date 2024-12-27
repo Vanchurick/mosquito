@@ -5,11 +5,11 @@ import {
   CheckboxLabel,
 } from "./StyledComponents";
 
-const Checkbox = ({ data, handler }) => {
+const Checkbox = ({ data, ...props }) => {
   return (
     <CustomCheckbox>
       <CheckboxLabel>{data.label}</CheckboxLabel>
-      <HiddenCheckbox onChange={handler} checked={data.selected} />
+      <HiddenCheckbox {...props} checked={data.selected} />
       <CheckboxBox />
     </CustomCheckbox>
   );

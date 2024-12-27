@@ -1,14 +1,20 @@
-import Button from "../Button/Button";
+import { useState, useContext } from "react";
+
+import { Context } from "../../store/Context";
+
 import { WhatsAppButtonContainer, Title } from "./StyledComponents";
-import createWhatsAppMessage from "../../utils/createWhatsAppMessage";
-import Selector from "../Selects/Selector/Selector";
-import { useState } from "react";
+
 import { PHONE_NUMBER_LABEL } from "../../assets/consts";
 
-import React from "react";
+import createWhatsAppMessage from "../../utils/createWhatsAppMessage";
 
-const WhatsAppButton = ({ reportData }) => {
-  const message = createWhatsAppMessage(reportData);
+import Selector from "../Selects/Selector/Selector";
+import Button from "../Button/Button";
+
+
+const WhatsAppButton = () => {
+  const { state } = useContext(Context);
+  const message = createWhatsAppMessage(state);
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const sendMessage = () => {

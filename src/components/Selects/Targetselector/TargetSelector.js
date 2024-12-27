@@ -1,56 +1,70 @@
-import Button from "../../Button/Button";
-import SelectorNew from "../Selector/Selector";
-import { useState } from "react";
-import updateFormState from "../../../utils/updateFormState";
-import generateUniqId from "../../../utils/generateUniqId";
+import { useState, useContext } from "react";
+
+import { Context } from "../../../store/Context";
+
 import { TargetsSelectorContainer, WarningMessage } from "./StyledComponents";
 
-function Targetselector({
-  onAddNewTarget,
-  actionType,
-  derivedTargetForm,
-  isEdit,
-  onEditTarget,
-}) {
-  const [targetForm, setTargetForm] = useState(derivedTargetForm);
+import Button from "../../Button/Button";
+import SelectorNew from "../Selector/Selector";
+
+import generateUniqId from "../../../utils/generateUniqId";
+import generateTargetSelectors from "../../../utils/generateTargetSelectors";
+
+function Targetselector({ isEdit, closeEditModal }) {
+  const {
+    state: {
+      targets: { selectors, idEditTarget, selected },
+      action,
+    },
+    selectTargetValue,
+    addTarget,
+    editTarget,
+  } = useContext(Context);
   const [isValidTarget, setIsValidTarget] = useState(true);
 
-  const setTargetValue = (fieldName, selectedOption) => {
-    updateFormState(fieldName, selectedOption, setTargetForm);
-  };
+  const actionType = action.selected?.value;
+  const derivedTargetForm = generateTargetSelectors({
+    idEditTarget,
+    selectors,
+    selected,
+    isEdit,
+    actionType,
+  });
 
   const onAddTarget = () => {
     const newTarget = {};
 
-    for (const key in targetForm) {
-      if (!targetForm[key].selected) {
+    for (const key in derivedTargetForm) {
+      if (!selectors[key].selected) {
         setIsValidTarget(false);
         return;
       }
-      newTarget[key] = targetForm[key].selected;
+      newTarget[key] = selectors[key].selected;
     }
 
     newTarget.id = generateUniqId(5);
     newTarget.label = actionType;
-    onAddNewTarget(newTarget);
+    addTarget(newTarget);
     setIsValidTarget(true);
   };
 
   const onEdit = () => {
     const newTarget = {};
 
-    for (const key in targetForm) {
-      if (!targetForm[key].selected) {
+    for (const key in derivedTargetForm) {
+      if (!selectors[key].selected) {
         setIsValidTarget(false);
         return;
       }
-      newTarget[key] = targetForm[key].selected;
+      newTarget[key] = selectors[key].selected;
     }
-    onEditTarget(newTarget);
+
+    editTarget(newTarget);
     setIsValidTarget(true);
+    closeEditModal();
   };
 
-  const targetFormFields = Object.keys(targetForm);
+  const targetFormFields = Object.keys(derivedTargetForm);
 
   return (
     <TargetsSelectorContainer $isValid={isValidTarget}>
@@ -59,8 +73,8 @@ function Targetselector({
         return (
           <SelectorNew
             key={fieldName}
-            handler={(newValue) => setTargetValue(fieldName, newValue)}
-            optionsData={targetForm[fieldName]}
+            handler={(newValue) => selectTargetValue(fieldName, newValue)}
+            optionsData={selectors[fieldName]}
           />
         );
       })}
