@@ -48,9 +48,9 @@ const createWhatsAppMessage = (reportData) => {
   const targetsList = targets.selected
     .map((target) => {
       if (target.label === AIR_INTELIGENCE_ACTION) {
-        return `${newParagraf}${eightSpaces}- *${target.targetStatusAir.value} ${target.targetName.value}*, за координатами ${target.targetCoordinates.value}, околиці  н.п. ${target.targetCity.value}, ${target.targetDistance.value} метрів до ДКУ.`;
+        return `${newParagraf}${eightSpaces}- *${target.targetStatusAir.value} ${target.targetName.value}*, за координатами ${target.targetCoordinates.value}, околиці  н.п. ${target.targetCity.value} (рф), ${target.targetDistance.value} метрів до ДКУ.`;
       }
-      return `${newParagraf}${eightSpaces}- *${target.targetStatusDamage.value} ${target.targetName.value}*, за координатами ${target.targetCoordinates.value}, околиці н.п. ${target.targetCity.value}, ${target.targetDistance.value} метрів до ДКУ. Використано ${target.countAmunition.value} ${target.amunition.value} _(${target.amunitionAction.value})_.`;
+      return `${newParagraf}${eightSpaces}- *${target.targetStatusDamage.value} ${target.targetName.value}*, за координатами ${target.targetCoordinates.value}, околиці н.п. ${target.targetCity.value} (рф), ${target.targetDistance.value} метрів до ДКУ. Використано ${target.countAmunition.value} ${target.amunition.value} _(${target.amunitionAction.value})_.`;
     })
     .join(";");
 

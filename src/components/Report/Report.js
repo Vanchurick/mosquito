@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 import {
   Highlights,
   ReportContainer,
@@ -13,23 +15,27 @@ import {
   ADJUSTMENT_ACTION,
 } from "../../assets/consts";
 
-const Report = ({ reportData }) => {
+import { Context } from "../../store/Context";
+
+const Report = () => {
   const {
-    data,
-    timeStart,
-    timeFinish,
-    area,
-    unit,
-    action,
-    aircraft,
-    directionUkr,
-    directionPidarasy,
-    pilots,
-    altitude,
-    jamming,
-    targets,
-    subUnit,
-  } = reportData;
+    state: {
+      data,
+      timeStart,
+      timeFinish,
+      area,
+      unit,
+      action,
+      aircraft,
+      directionUkr,
+      directionPidarasy,
+      pilots,
+      altitude,
+      jamming,
+      targets,
+      subUnit,
+    },
+  } = useContext(Context);
 
   const results = {
     [AIR_INTELIGENCE_ACTION]: (
@@ -70,7 +76,7 @@ const Report = ({ reportData }) => {
                 </Highlights>
                 , за координатами&nbsp;
                 {target.targetCoordinates.value}, околиці н.п.&nbsp;
-                {target.targetCity.value},&nbsp;
+                {target.targetCity.value} (рф),&nbsp;
                 {target.targetDistance.value} метрів до ДКУ;
               </Paragraf>
             </ListItem>
@@ -86,7 +92,7 @@ const Report = ({ reportData }) => {
               </Highlights>
               , за координатами&nbsp;
               {target.targetCoordinates.value}, околиці н.п.&nbsp;
-              {target.targetCity.value}, &nbsp;
+              {target.targetCity.value} (рф), &nbsp;
               {target.targetDistance.value} метрів до ДКУ. Використано&nbsp;
               {target.countAmunition.value}&nbsp;
               {target.amunition.value}{" "}

@@ -468,3 +468,12 @@ export const TARGET_FORM_DATA = {
     ],
   },
 };
+
+export const STATE = {
+  ...FORM_DATA,
+  targets: {
+    ...FORM_DATA.targets,
+    selectors: { ...TARGET_FORM_DATA },
+    idEditTarget: "",
+  },
+};
