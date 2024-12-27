@@ -8,8 +8,7 @@ import Button from "../../Button/Button";
 import SelectorNew from "../Selector/Selector";
 
 import generateUniqId from "../../../utils/generateUniqId";
-
-import { AIR_INTELIGENCE_ACTION } from "../../../assets/consts";
+import generateTargetSelectors from "../../../utils/generateTargetSelectors";
 
 function Targetselector({ isEdit, closeEditModal }) {
   const {
@@ -21,66 +20,16 @@ function Targetselector({ isEdit, closeEditModal }) {
     addTarget,
     editTarget,
   } = useContext(Context);
+  const [isValidTarget, setIsValidTarget] = useState(true);
 
   const actionType = action.selected?.value;
-
-  let derivedTargetForm = {};
-
-  if (isEdit) {
-    const targetForEdit = selected.find((target) => target.id === idEditTarget);
-
-    for (const key in targetForEdit) {
-      if (key !== "id" && key !== "label") {
-        derivedTargetForm[key] = {
-          label: selectors[key].label,
-          options: selectors[key].options,
-          selected: targetForEdit[key],
-        };
-      }
-    }
-  } else {
-    if (actionType === AIR_INTELIGENCE_ACTION) {
-      const {
-        targetName,
-        targetCity,
-        targetCoordinates,
-        targetDistance,
-        targetStatusAir,
-      } = selectors;
-
-      derivedTargetForm = {
-        targetName,
-        targetCity,
-        targetCoordinates,
-        targetDistance,
-        targetStatusAir,
-      };
-    } else {
-      const {
-        targetName,
-        targetCity,
-        targetCoordinates,
-        targetDistance,
-        amunition,
-        amunitionAction,
-        countAmunition,
-        targetStatusDamage,
-      } = selectors;
-
-      derivedTargetForm = {
-        targetName,
-        targetCity,
-        targetCoordinates,
-        targetDistance,
-        amunition,
-        amunitionAction,
-        countAmunition,
-        targetStatusDamage,
-      };
-    }
-  }
-
-  const [isValidTarget, setIsValidTarget] = useState(true);
+  const derivedTargetForm = generateTargetSelectors({
+    idEditTarget,
+    selectors,
+    selected,
+    isEdit,
+    actionType,
+  });
 
   const onAddTarget = () => {
     const newTarget = {};
