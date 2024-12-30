@@ -75,7 +75,7 @@ const Report = () => {
                   {target.targetName.value}
                 </Highlights>
                 , за координатами&nbsp;
-                {target.targetCoordinates.value}, околиці н.п.&nbsp;
+                {target.targetCoordinates}, околиці н.п.&nbsp;
                 {target.targetCity.value} (рф),&nbsp;
                 {target.targetDistance.value} метрів до ДКУ;
               </Paragraf>
@@ -91,7 +91,7 @@ const Report = () => {
                 {target.targetName.value}
               </Highlights>
               , за координатами&nbsp;
-              {target.targetCoordinates.value}, околиці н.п.&nbsp;
+              {target.targetCoordinates}, околиці н.п.&nbsp;
               {target.targetCity.value} (рф), &nbsp;
               {target.targetDistance.value} метрів до ДКУ. Використано&nbsp;
               {target.countAmunition.value}&nbsp;

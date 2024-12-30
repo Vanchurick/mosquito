@@ -1,70 +1,69 @@
 import { createContext, useReducer } from "react";
 import { STATE } from "../assets/formData";
-import appReducer from "./reducer";
+import { formReducer, stateReducer } from "./reducer";
 import {
   SELECT_VALUE,
   SET_JAMMING,
   ADD_TARGET,
-  SELECT_TARGET_VALUE,
   REMOVE_TARGET,
   EDIT_TARGET,
   SET_ID_EDIT_TARGET,
+  OPEN_MAP,
+  CLOSE_MAP,
 } from "./actionsType";
 
-export const Context = createContext({
-  ...STATE,
-  selectValue: () => {},
-  setJamming: () => {},
-  addTarget: () => {},
-  selectTargetValue: () => {},
-  removeTarget: () => {},
-  editTarget: () => {},
-  setIdEditTarget: () => {},
-});
+export const Context = createContext();
 
 export default function AppContext({ children }) {
-  const [state, dispatch] = useReducer(appReducer, { ...STATE });
+  const [form, dispatchForm] = useReducer(formReducer, { ...STATE });
+  const [state, dispatchState] = useReducer(stateReducer, { isMapOpen: false });
 
   const selectValue = (formField, selectedOption) => {
-    dispatch({ type: SELECT_VALUE, payload: { formField, selectedOption } });
-  };
-
-  const selectTargetValue = (formField, selectedOption) => {
-    dispatch({
-      type: SELECT_TARGET_VALUE,
+    dispatchForm({
+      type: SELECT_VALUE,
       payload: { formField, selectedOption },
     });
   };
 
   const setJamming = (jammingValue) => {
-    dispatch({ type: SET_JAMMING, payload: jammingValue });
+    dispatchForm({ type: SET_JAMMING, payload: jammingValue });
   };
 
   const addTarget = (target) => {
-    dispatch({ type: ADD_TARGET, payload: target });
+    dispatchForm({ type: ADD_TARGET, payload: target });
   };
 
   const removeTarget = (id) => {
-    dispatch({ type: REMOVE_TARGET, payload: id });
+    dispatchForm({ type: REMOVE_TARGET, payload: id });
   };
 
   const editTarget = (editedTarget) => {
-    dispatch({ type: EDIT_TARGET, payload: editedTarget });
+    dispatchForm({ type: EDIT_TARGET, payload: editedTarget });
   };
 
   const setIdEditTarget = (id) => {
-    dispatch({ type: SET_ID_EDIT_TARGET, payload: id });
+    dispatchForm({ type: SET_ID_EDIT_TARGET, payload: id });
+  };
+
+  const openMap = () => {
+    dispatchState({ type: OPEN_MAP });
+  };
+
+  const closeMap = () => {
+    dispatchState({ type: CLOSE_MAP });
   };
 
   const appCtx = {
-    state: { ...state },
+    state: { ...form },
+    data: { ...state },
     selectValue,
     setJamming,
-    selectTargetValue,
     addTarget,
     removeTarget,
     editTarget,
     setIdEditTarget,
+    openMap,
+    closeMap,
   };
 
   return <Context.Provider value={appCtx}>{children}</Context.Provider>;

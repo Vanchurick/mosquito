@@ -93,3 +93,5 @@ export const PKSHR = "ПКШР";
 export const AMUNITION_ACTION_LABEL = "Принцип дії боєприпасу";
 export const KUMULYATIV = "кумулятивний";
 export const ULAMKOVO_FUGAS = "уламково-фугасний";
+
+export const GOOGLE_MAP_API_KEY = "AIzaSyBQBBy4ud5IrdeJgTdHlxW6SWYe3ZrHXn4";

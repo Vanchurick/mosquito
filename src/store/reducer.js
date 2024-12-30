@@ -2,14 +2,15 @@ import {
   ADD_TARGET,
   SELECT_VALUE,
   SET_JAMMING,
-  SELECT_TARGET_VALUE,
   REMOVE_TARGET,
   EDIT_TARGET,
   SET_ID_EDIT_TARGET,
+  OPEN_MAP,
+  CLOSE_MAP,
 } from "./actionsType";
 import generateUniqId from "../utils/generateUniqId";
 
-export default function appReducer(state, { type, payload }) {
+export function formReducer(state, { type, payload }) {
   const { formField, selectedOption } = payload;
 
   switch (type) {
@@ -75,48 +76,6 @@ export default function appReducer(state, { type, payload }) {
           selected: [...state.targets.selected, payload],
         },
       };
-    case SELECT_TARGET_VALUE:
-      if (!selectedOption) return state;
-
-      if (selectedOption.__isNew__) {
-        const newOption = {
-          value: selectedOption.value,
-          label: selectedOption.label,
-          id: generateUniqId(5),
-        };
-
-        return {
-          ...state,
-          targets: {
-            ...state.targets,
-            selectors: {
-              ...state.targets.selectors,
-              [formField]: {
-                ...state.targets.selectors[formField],
-                selected: newOption,
-                options: [
-                  ...state.targets.selectors[formField].options,
-                  newOption,
-                ],
-              },
-            },
-          },
-        };
-      }
-
-      return {
-        ...state,
-        targets: {
-          ...state.targets,
-          selectors: {
-            ...state.targets.selectors,
-            [formField]: {
-              ...state.targets.selectors[formField],
-              selected: selectedOption,
-            },
-          },
-        },
-      };
     case REMOVE_TARGET:
       return {
         ...state,
@@ -145,6 +104,17 @@ export default function appReducer(state, { type, payload }) {
       };
     case SET_ID_EDIT_TARGET:
       return { ...state, targets: { ...state.targets, idEditTarget: payload } };
+    default:
+      return state;
+  }
+}
+
+export function stateReducer(state, { type, payload }) {
+  switch (type) {
+    case OPEN_MAP:
+      return { ...state, isMapOpen: true };
+    case CLOSE_MAP:
+      return { ...state, isMapOpen: false };
     default:
       return state;
   }
