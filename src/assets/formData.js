@@ -354,7 +354,6 @@ export const TARGET_FORM_DATA = {
   targetCoordinates: {
     label: TARGET_COORDINATES_LABEL,
     selected: null,
-    options: [],
   },
   targetDistance: {
     label: TARGET_DISTANCE_LABEL,

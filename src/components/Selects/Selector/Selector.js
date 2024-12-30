@@ -2,8 +2,7 @@
 import CreatableSelect from "react-select/creatable";
 import { SelectorContainer } from "./StyledComponents";
 import { PILOTS_LABEL } from "../../../assets/consts";
-import { useEffect } from "react";
-import { useContext, useState } from "react";
+import { useContext, useEffect } from "react";
 import { ThemeContext } from "styled-components";
 import {
   TARGET_COORDINATES_LABEL,
@@ -13,21 +12,18 @@ import {
   TARGET_STATUS_DAMAGE_LABEL,
 } from "../../../assets/consts";
 
-const SelectorNew = ({ handler, optionsData, placeholder }) => {
+const Selector = ({ handler, optionsData, placeholder }) => {
   const { label, options, selected } = optionsData;
   const { colors } = useContext(ThemeContext);
 
   const isPilots = label === PILOTS_LABEL;
 
-  const [value, setValue] = useState(options[0]);
-
   const handleChange = (selectedOption) => {
     handler(selectedOption);
-    setValue(selectedOption);
   };
 
   useEffect(() => {
-    handler(selected ? selected : value);
+    handler(selected || options[0]);
   }, []);
 
   const selectCustomStyles = {
@@ -106,4 +102,4 @@ const SelectorNew = ({ handler, optionsData, placeholder }) => {
   );
 };
 
-export default SelectorNew;
+export default Selector;

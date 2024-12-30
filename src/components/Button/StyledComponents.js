@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const ButtonStyled = styled.button`
   display: block;
   padding: 0.5rem 1.5rem;
-  margin: 1rem;
   background-color: ${({ theme, disabled }) =>
     disabled ? theme.colors.bgLight : theme.colors.secondary};
   border-radius: 20px;

@@ -11,6 +11,8 @@ import Checkbox from "../Selects/Checkbox/Checkbox";
 import TargetsLabels from "../TargetsLabels/TargetsLabels";
 import Modal from "../Modal/Modal";
 
+import generateTargetSelectors from "../../utils/generateTargetSelectors";
+
 import { Context } from "../../store/Context";
 
 function InputsForm() {
@@ -19,7 +21,21 @@ function InputsForm() {
   const { setJamming, selectValue, state, setIdEditTarget } =
     useContext(Context);
 
+  const {
+    action,
+    targets: { idEditTarget, selected, selectors },
+  } = state;
+
   const modal = useRef();
+
+  const actionType = action.selected?.value;
+  const targetSelectors = generateTargetSelectors({
+    idEditTarget,
+    selectors,
+    selected,
+    isEdit: !!idEditTarget,
+    actionType,
+  });
 
   const openEditTargetModal = (id) => {
     setIdEditTarget(id);
@@ -39,7 +55,7 @@ function InputsForm() {
       return (
         <div key={formField}>
           <TargetsLabels onOpenModal={openEditTargetModal} />
-          <Targetselector />
+          <Targetselector targetSelectors={targetSelectors} />
         </div>
       );
     }
@@ -78,7 +94,13 @@ function InputsForm() {
   return (
     <>
       <Modal ref={modal}>
-        <Targetselector isEdit={true} closeEditModal={closeEditTargetModal} />
+        {!!idEditTarget && (
+          <Targetselector
+            isEdit
+            targetSelectors={targetSelectors}
+            closeEditModal={closeEditTargetModal}
+          />
+        )}
       </Modal>
       <InputsContainer>
         <TabsContainer>
