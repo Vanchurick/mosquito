@@ -16,21 +16,27 @@ const Map = ({ onCloseMap, onSetCoordinates }) => {
   const [currentPosition, setCurrentPosition] = useState(null);
   const [markerPosition, setMarkerPosition] = useState(null);
 
+  const setMapCenter = (lat, lng) => {
+    setCurrentPosition({
+      lat,
+      lng,
+    });
+  };
+
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          setCurrentPosition({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
+          setMapCenter(position.coords.latitude, position.coords.longitude);
         },
         (error) => {
           console.error("Error obtaining location:", error);
+          setMapCenter(51.385434, 31.391924);
         }
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
+      setMapCenter(51.385434, 31.391924);
     }
   }, []);
 
