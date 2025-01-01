@@ -7,6 +7,8 @@ import formatCoordinates from "../../utils/formatCoordinates";
 
 import Button from "../Button/Button";
 
+import targetIcon from "../../assets/images/target.png";
+
 const Map = ({ onCloseMap, onSetCoordinates }) => {
   const containerStyle = {
     width: "80vw",
@@ -59,6 +61,14 @@ const Map = ({ onCloseMap, onSetCoordinates }) => {
     ? formatCoordinates(markerPosition)
     : "Координати не задані";
 
+  /* eslint-disable no-undef */
+
+  const customMarkerIcon = {
+    url: targetIcon,
+    size: new google.maps.Size(48, 48),
+    anchor: new google.maps.Point(24, 24),
+  };
+
   return (
     <>
       <GoogleMap
@@ -68,7 +78,9 @@ const Map = ({ onCloseMap, onSetCoordinates }) => {
         onClick={handleClick}
         mapTypeId="hybrid"
       >
-        {markerPosition && <Marker position={markerPosition} />}
+        {markerPosition && (
+          <Marker position={markerPosition} icon={customMarkerIcon} />
+        )}
       </GoogleMap>
       <FlexContainer>
         <Coordinates>{coordinates}</Coordinates>
