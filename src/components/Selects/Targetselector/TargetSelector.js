@@ -117,6 +117,9 @@ function Targetselector({ isEdit, closeEditModal, targetSelectors }) {
       <Modal ref={modalMap}>
         {isMapOpen && (
           <Map
+            centerCoordinates={
+              targetFormState.selectors.targetCoordinates.selected
+            }
             onSetCoordinates={setCoordinates}
             onCloseMap={closeModalMap}
           />
