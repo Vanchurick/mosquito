@@ -3,13 +3,15 @@ import { useState, useEffect } from "react";
 
 import { FlexContainer, Coordinates } from "./StyledComponents";
 
+import { toPoint } from "mgrs";
+
 import formatCoordinates from "../../utils/formatCoordinates";
 
 import Button from "../Button/Button";
 
 import targetIcon from "../../assets/images/target.png";
 
-const Map = ({ onCloseMap, onSetCoordinates }) => {
+const Map = ({ onCloseMap, onSetCoordinates, centerCoordinates }) => {
   const containerStyle = {
     width: "80vw",
     height: "60vh",
@@ -26,6 +28,13 @@ const Map = ({ onCloseMap, onSetCoordinates }) => {
   };
 
   useEffect(() => {
+    if (centerCoordinates) {
+      const [lng, lat] = toPoint(centerCoordinates.replace(/\s+/g, ""));
+      setMarkerPosition({ lat, lng });
+      setMapCenter(lat, lng);
+      return;
+    }
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -40,7 +49,7 @@ const Map = ({ onCloseMap, onSetCoordinates }) => {
       console.error("Geolocation is not supported by this browser.");
       setMapCenter(51.385434, 31.391924);
     }
-  }, []);
+  }, [centerCoordinates]);
 
   const handleClick = (e) => {
     const lat = e.latLng.lat();
@@ -74,7 +83,7 @@ const Map = ({ onCloseMap, onSetCoordinates }) => {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={currentPosition}
-        zoom={10}
+        zoom={centerCoordinates ? 15 : 10}
         onClick={handleClick}
         mapTypeId="hybrid"
       >
