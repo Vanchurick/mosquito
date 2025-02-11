@@ -42,9 +42,7 @@ const Report = () => {
       <Paragraf>За результатами аеророзвідки:</Paragraf>
     ),
     [DAMAGE_ACTION]: <Paragraf>За результатами заходів:</Paragraf>,
-    [ADJUSTMENT_ACTION]: (
-      <Paragraf>За результатами заходів з корегування вогню:</Paragraf>
-    ),
+    [ADJUSTMENT_ACTION]: <Paragraf>За результатами заходів:</Paragraf>,
   };
 
   const noChanging = {
@@ -75,8 +73,10 @@ const Report = () => {
                   {target.targetName.value}
                 </Highlights>
                 , за координатами&nbsp;
-                {target.targetCoordinates}, околиці н.п.&nbsp;
-                {target.targetCity.value} (рф),&nbsp;
+                {target.targetCoordinates},{" "}
+                {target.targetCity.value
+                  ? `околиці н.п. ${target.targetCity.value} (рф),`
+                  : null}
                 {target.targetDistance.value} метрів до ДКУ;
               </Paragraf>
             </ListItem>
@@ -91,8 +91,12 @@ const Report = () => {
                 {target.targetName.value}
               </Highlights>
               , за координатами&nbsp;
-              {target.targetCoordinates}, околиці н.п.&nbsp;
-              {target.targetCity.value} (рф), &nbsp;
+              {target.targetCoordinates},{" "}
+              {target.targetCity.value
+                ? `околиці н.п.
+                ${target.targetCity.value} (рф),`
+                : null}{" "}
+              &nbsp;
               {target.targetDistance.value} метрів до ДКУ. Використано&nbsp;
               {target.countAmunition.value}&nbsp;
               {target.amunition.value}{" "}
@@ -105,23 +109,22 @@ const Report = () => {
   );
 
   const actionOptions = {
-    [AIR_INTELIGENCE_ACTION]: "аеророзвідки",
-    [DAMAGE_ACTION]: "ураження противника",
-    [ADJUSTMENT_ACTION]: "корегування вогню",
+    [AIR_INTELIGENCE_ACTION]: "проведено аеророзвідку",
+    [DAMAGE_ACTION]: "проведено ураження",
+    [ADJUSTMENT_ACTION]: "проведено корегування вогню",
   };
 
   return (
     <ReportContainer>
       <Highlights>{subUnit.selected?.value} 105 ПрикЗ</Highlights>
       <Paragraf>
-        {data.selected}, в період {timeStart.selected?.value} -{" "}
-        {timeFinish.selected?.value} ГрАР{" "}
-        <Italic>{unit.selected?.value}</Italic> проведено заходи{" "}
+        {data.selected}, ({timeStart.selected?.value} -{" "}
+        {timeFinish.selected?.value})
+        <Highlights> ГрАР {unit.selected?.value} </Highlights>
         {actionOptions[action.selected?.value]}, із використанням{" "}
-        {aircraft.selected?.value} на напрямку н.п.{" "}
-        {directionUkr.selected?.value} (Україна) – н.п.{" "}
-        {directionPidarasy.selected?.value} (рф), ділянка відповідальності{" "}
-        {area.selected?.value}.
+        {aircraft.selected?.value} на напр. н.п.{" "}
+        {directionPidarasy.selected?.value} (рф) – н.п.{" "}
+        {directionUkr.selected?.value} (Укр.), ділянка {area.selected?.value}.
       </Paragraf>
       {targets.selected.length
         ? results[action.selected?.value]
