@@ -1,8 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import CreatableSelect from "react-select/creatable";
 import { SelectorContainer } from "./StyledComponents";
 import { PILOTS_LABEL } from "../../../assets/consts";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { ThemeContext } from "styled-components";
 import {
   TARGET_COORDINATES_LABEL,
@@ -21,10 +20,6 @@ const Selector = ({ handler, optionsData, placeholder }) => {
   const handleChange = (selectedOption) => {
     handler(selectedOption);
   };
-
-  useEffect(() => {
-    handler(selected || options[0]);
-  }, []);
 
   const selectCustomStyles = {
     control: (baseStyles, state) => ({

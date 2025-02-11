@@ -70,6 +70,7 @@ import {
   AMUNITION_ACTION_LABEL,
   KUMULYATIV,
   ULAMKOVO_FUGAS,
+  EMPTY_LABEL,
 } from "./consts";
 
 import createTimeSelectorOptions from "../utils/createTimeSelectorOptions";
@@ -334,6 +335,11 @@ export const TARGET_FORM_DATA = {
     label: TARGET_CITY_LABEL,
     selected: null,
     options: [
+      {
+        id: "Gghkljmnbnvb4",
+        value: "",
+        label: EMPTY_LABEL,
+      },
       {
         id: "J4K89",
         value: SOPYCHI,
