@@ -26,9 +26,9 @@ export const MURAVYI = "Мурав'ї";
 export const KOSTOBOBRIV = "Костобобрів";
 
 export const DIRECTION_RU_LABEL = "Напрямок до підарасів";
-export const SOPYCHI = "сопичі";
-export const BILA_BEREZKA = "біла березка";
-export const AZAROVKA = "азаровка";
+export const SOPYCHI = "Сопичі";
+export const BILA_BEREZKA = "Біла Березка";
+export const AZAROVKA = "Азаровка";
 
 export const TIME_START_LABEL = "Початок роботи";
 export const TIME_FINISH_LABEL = "Завершення роботи";
@@ -95,3 +95,5 @@ export const KUMULYATIV = "кумулятивний";
 export const ULAMKOVO_FUGAS = "уламково-фугасний";
 
 export const GOOGLE_MAP_API_KEY = "AIzaSyBQBBy4ud5IrdeJgTdHlxW6SWYe3ZrHXn4";
+
+export const EMPTY_LABEL = 'Не задавати';
